@@ -14,83 +14,31 @@
     tools:context="com.example.thier.demo.MainActivity"
     android:background="#e2e2e2">
 
-    <TextView
-
-    android:text="@string/question1"
-
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:layout_above="@+id/q2"
-        android:layout_toEndOf="@+id/q1"
-        android:id="@+id/textquestion1" />
 
     <TextView
-
-        android:text="@string/q"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/q1"
-        android:textColor="#000000"
-        android:textSize="@dimen/abc_text_size_display_2_material" />
+        android:text="@string/titel"
+        android:id="@+id/titelView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/abc_text_size_large_material" />
 
-
-    <TextView
-
-        android:text="@string/question2"
-
+    <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:layout_alignBottom="@+id/q2"
-        android:layout_toEndOf="@+id/q2"
-        android:id="@+id/textquestion2" />
+        android:id="@+id/seekBar"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/titelView"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/vraag1" />
 
     <TextView
-
-        android:text="@string/q"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/q2"
-        android:textColor="#000000"
-        android:textSize="@dimen/abc_text_size_display_2_material"
-        android:layout_marginTop="197dp"
-        android:layout_below="@+id/q1"
+        android:text="New Text"
+        android:id="@+id/vraag1"
+        android:layout_below="@+id/seekBar"
         android:layout_alignParentStart="true" />
-
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lorum"
-        android:id="@+id/textq1"
-        android:textColor="#000000"
-        android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_below="@+id/textquestion1"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lorum"
-        android:id="@+id/textq2"
-        android:textColor="#000000"
-        android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_below="@+id/textquestion2"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Find method"
-        android:id="@+id/button"
-        android:layout_marginTop="502dp"
-        android:layout_marginLeft="115dp"
-        android:textColor="#ffffff"
-        android:background="#37bc4d"/>
 
 </RelativeLayout>
