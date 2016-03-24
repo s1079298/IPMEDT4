@@ -4,4 +4,13 @@
 
     <string name="titel">What do you think is more important?</string>
     <string name="lorum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="people">People</string>
+    <string name="process">Process</string>
+    <string name="software">Software</string>
+    <string name="documentation">Documentation</string>
+    <string name="teamwork">Teamwork</string>
+    <string name="contract">Contract</string>
+    <string name="dynamic">Dynamic</string>
+    <string name="planned">Planned</string>
+    <string name="next">Next</string>
 </resources>

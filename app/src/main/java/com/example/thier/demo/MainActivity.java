@@ -5,13 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     private SeekBar seekBar;
     private TextView textView;
@@ -20,8 +19,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initializeVariables();
+        setContentView(R.layout.main_layout);
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setProgress(0);
+        seekBar.setMax(4);
+
+        SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
+        seekBar2.setProgress(0);
+        seekBar2.setMax(4);
+
+        SeekBar seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
+        seekBar3.setProgress(0);
+        seekBar3.setMax(4);
+
+        /**initializeVariables();
 
         // Initialize the textview with '0'.
         textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
@@ -45,16 +57,19 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("Covered: " + progress + "/" + seekBar.getMax());
                 Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
             }
-        });
+        });**/
     }
+
+    public void conclusion(View view){
+        Toast.makeText(this, "This works!", Toast.LENGTH_SHORT).show();
+    }
+
 
     // A private method to help us initialize our variables.
     private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         textView = (TextView) findViewById(R.id.vraag1);
     }
-
-
 
 
     protected void onCreate1(Bundle savedInstanceState) {
