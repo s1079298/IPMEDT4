@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        //Sliders instellen naar max 4
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setProgress(0);
         seekBar.setMax(4);
@@ -32,6 +33,30 @@ public class MainActivity extends AppCompatActivity {
         SeekBar seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
         seekBar3.setProgress(0);
         seekBar3.setMax(4);
+
+        SeekBar seekBar4 = (SeekBar) findViewById(R.id.seekBar4);
+        seekBar4.setProgress(0);
+        seekBar4.setMax(4);
+
+        SeekBar seekBar5 = (SeekBar) findViewById(R.id.seekBar5);
+        seekBar5.setProgress(0);
+        seekBar5.setMax(4);
+
+        SeekBar seekBar6 = (SeekBar) findViewById(R.id.seekBar6);
+        seekBar6.setProgress(0);
+        seekBar6.setMax(4);
+
+        SeekBar seekBar7 = (SeekBar) findViewById(R.id.seekBar7);
+        seekBar7.setProgress(0);
+        seekBar7.setMax(4);
+
+        SeekBar seekBar8 = (SeekBar) findViewById(R.id.seekBar8);
+        seekBar8.setProgress(0);
+        seekBar8.setMax(4);
+
+        SeekBar seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
+        seekBar9.setProgress(0);
+        seekBar9.setMax(4);
 
         /**initializeVariables();
 

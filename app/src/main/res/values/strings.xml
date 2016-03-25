@@ -12,5 +12,16 @@
     <string name="contract">Contract</string>
     <string name="dynamic">Dynamic</string>
     <string name="planned">Planned</string>
+    <string name="incremental">Incremental</string>
+    <string name="bigbang">Big Bang</string>
+    <string name="topdown">Top Down</string>
+    <string name="bottomup">Bottom Up</string>
+    <string name="less">Less is more</string>
+    <string name="feature">Feature Rich</string>
+    <string name="zelfregie">Zelfregie</string>
+    <string name="management">Management</string>
+    <string name="prescriptive">Prescriptive</string>
+    <string name="adhoc">Ad Hoc</string>
     <string name="next">Next</string>
+
 </resources>
