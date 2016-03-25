@@ -72,7 +72,8 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignLeft="@+id/titelView"
+                android:layout_alignStart="@+id/titelView" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -160,8 +161,9 @@
                 android:id="@+id/seekBar3"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
-                android:layout_alignTop="@+id/textView5"
-                android:layout_centerHorizontal="true" />
+                android:layout_below="@+id/seekBar2"
+                android:layout_alignRight="@+id/textView6"
+                android:layout_alignEnd="@+id/textView6" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -205,7 +207,8 @@
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar3"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignLeft="@+id/seekBar3"
+                android:layout_alignStart="@+id/seekBar3" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -363,11 +366,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/zelfregie"
+                android:text="@string/self"
                 android:id="@+id/textView15"
-                android:layout_alignTop="@+id/seekBar8"
-                android:layout_alignRight="@+id/textView7"
-                android:layout_alignEnd="@+id/textView7" />
+                android:layout_below="@+id/seekBar7"
+                android:layout_alignLeft="@+id/seekBar8"
+                android:layout_alignStart="@+id/seekBar8" />
 
             <TextView
                 android:layout_width="wrap_content"
