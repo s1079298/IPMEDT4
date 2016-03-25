@@ -2,20 +2,16 @@ package com.example.thier.demo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
@@ -81,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         init();
     }
 
+        //onclicklistener voor alle info buttons instellen
         public void init() {
             info1 = (ImageButton) findViewById(R.id.info1);
             info1.setOnClickListener(this);
@@ -111,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     }
 
+    //if statements instellen voor de info buttons, zodat de goede info weergegeven wordt
     public void onClick(View v){
         if (v.getId() == R.id.info1){
             new AlertDialog.Builder(this)
@@ -235,6 +233,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     }
 
+    public void conclusion(View view){
+        Intent intent = new Intent(MainActivity.this, Conclusion.class);
+        startActivity(intent);
+    }
+
+
         /**initializeVariables();
 
         // Initialize the textview with '0'.
@@ -262,10 +266,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }}
             };**/
 
-    public void conclusion(View view){
-        Toast.makeText(this, "This works!", Toast.LENGTH_SHORT).show();
-    }
-
 
     // A private method to help us initialize our variables.
     private void initializeVariables() {
@@ -277,8 +277,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     protected void onCreate1(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
 
     }
@@ -296,11 +296,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

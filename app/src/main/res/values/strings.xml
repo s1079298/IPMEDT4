@@ -22,6 +22,7 @@
     <string name="management">Management</string>
     <string name="prescriptive">Prescriptive</string>
     <string name="adhoc">Ad Hoc</string>
-    <string name="next">Next</string>
+    <string name="result">Show Result</string>
+    <string name="resultTitel">Results</string>
 
 </resources>
