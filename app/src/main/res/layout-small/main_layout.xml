@@ -20,7 +20,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="948dp">
+            android:layout_height="wrap_content">
 
 
             <TextView
@@ -464,6 +464,15 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginEnd="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/seekBar9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="28dp" />
 
 
         </RelativeLayout>
