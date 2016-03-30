@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        //Sliders instellen naar max 4
+        //Sliders instellen naar max 5
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setProgress(2);
         seekBar.setMax(4);
@@ -233,8 +233,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     }
 
-    public void conclusion(View view){
-        Intent intent = new Intent(MainActivity.this, Conclusion.class);
+    public void gewicht(View view){
+        Intent intent = new Intent(MainActivity.this, Weight.class);
         startActivity(intent);
     }
 

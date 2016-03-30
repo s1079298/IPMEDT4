@@ -30,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Weight">
+            <intent-filter>
+                <action android:name="android.intent.action.OTHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".Conclusion">
             <intent-filter>
                 <action android:name="android.intent.action.OTHER"/>

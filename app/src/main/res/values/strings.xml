@@ -22,7 +22,22 @@
     <string name="management">Management</string>
     <string name="prescriptive">Voorschrijvend</string>
     <string name="adhoc">Ad Hoc</string>
+    <string name="plus">++</string>
+    <string name="min">--</string>
+    <string name="next">Next</string>
     <string name="result">Toon Resultaat</string>
     <string name="resultTitel">Resultaten</string>
+    <string name="weightTitel">Welk gewicht geef je mee?</string>
+
+    <string name="weight1">Mensen/Processen</string>
+    <string name="weight2">Software/Documentatie</string>
+    <string name="weight3">Samenwerken/Op Contract</string>
+    <string name="weight4">Dynamisch/Planmatig</string>
+    <string name="weight5">Incrementeel/Big Bang</string>
+    <string name="weight6">Top Down/Bottom Up</string>
+    <string name="weight7">Less is more/Feature rich</string>
+    <string name="weight8">Zelfregie/Management</string>
+    <string name="weight9">Voorschrijvend/Ad Hoc</string>
+
 
 </resources>

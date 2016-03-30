@@ -467,13 +467,13 @@
                 android:layout_alignParentEnd="true" />
 
             <Button
-                android:id="@+id/resultButton"
-                android:onClick="conclusion"
+                android:id="@+id/nextButton"
+                android:onClick="gewicht"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:background="#4CAF50"
                 android:textAllCaps="true"
-                android:text="@string/result"
+                android:text="@string/next"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:textColor="#FFFFFF"
