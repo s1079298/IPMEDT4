@@ -38,39 +38,39 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         //Sliders instellen naar max 4
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setProgress(0);
+        seekBar.setProgress(2);
         seekBar.setMax(4);
 
         SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
-        seekBar2.setProgress(0);
+        seekBar2.setProgress(2);
         seekBar2.setMax(4);
 
         SeekBar seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
-        seekBar3.setProgress(0);
+        seekBar3.setProgress(2);
         seekBar3.setMax(4);
 
         SeekBar seekBar4 = (SeekBar) findViewById(R.id.seekBar4);
-        seekBar4.setProgress(0);
+        seekBar4.setProgress(2);
         seekBar4.setMax(4);
 
         SeekBar seekBar5 = (SeekBar) findViewById(R.id.seekBar5);
-        seekBar5.setProgress(0);
+        seekBar5.setProgress(2);
         seekBar5.setMax(4);
 
         SeekBar seekBar6 = (SeekBar) findViewById(R.id.seekBar6);
-        seekBar6.setProgress(0);
+        seekBar6.setProgress(2);
         seekBar6.setMax(4);
 
         SeekBar seekBar7 = (SeekBar) findViewById(R.id.seekBar7);
-        seekBar7.setProgress(0);
+        seekBar7.setProgress(2);
         seekBar7.setMax(4);
 
         SeekBar seekBar8 = (SeekBar) findViewById(R.id.seekBar8);
-        seekBar8.setProgress(0);
+        seekBar8.setProgress(2);
         seekBar8.setMax(4);
 
         SeekBar seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
-        seekBar9.setProgress(0);
+        seekBar9.setProgress(2);
         seekBar9.setMax(4);
 
         //pop ups met info button
@@ -241,13 +241,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         /**initializeVariables();
 
-        // Initialize the textview with '0'.
-        textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
+         // Initialize the textview with '0'.
+         textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progress = 0;
+         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+         int progress = 0;
 
-            @Override
+            @Override000
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 progress = progresValue;
                 Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
