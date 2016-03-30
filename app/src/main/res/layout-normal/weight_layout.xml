@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#000000"
+                android:alpha="0.87"
+                android:textSize="18sp"
+                android:text="@string/weightTitel"
+                android:id="@+id/titelView"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
+                android:paddingBottom="16dp"
+                android:paddingRight="16dp"
+                android:paddingEnd="16dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <!-- Eerste Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight1"
+                android:id="@+id/textWeight1"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/titelView"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min1"
+                android:layout_alignTop="@+id/weightBar"
+                android:layout_alignLeft="@+id/titelView"
+                android:layout_alignStart="@+id/titelView"
+                android:layout_marginTop="17dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus1"
+                android:layout_alignTop="@+id/min1"
+                android:layout_alignLeft="@+id/plus3"
+                android:layout_alignStart="@+id/plus3" />
+
+            <SeekBar
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar"
+                android:paddingTop="16dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/textWeight1"
+                android:layout_centerHorizontal="true" />
+
+
+            <!-- Tweede Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight2"
+                android:id="@+id/textWeight2"
+                android:layout_below="@+id/weightBar"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min2"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textWeight2"
+                android:layout_alignLeft="@+id/min1"
+                android:layout_alignStart="@+id/min1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus2"
+                android:layout_alignTop="@+id/min2"
+                android:layout_alignLeft="@+id/plus1"
+                android:layout_alignStart="@+id/plus1" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar2"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar"
+                android:layout_alignLeft="@+id/weightBar"
+                android:layout_alignStart="@+id/weightBar"
+                android:layout_alignRight="@+id/weightBar"
+                android:layout_alignEnd="@+id/weightBar" />
+
+
+            <!-- Derde Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight3"
+                android:id="@+id/textWeight3"
+                android:layout_below="@+id/weightBar2"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min3"
+                android:layout_below="@+id/textWeight3"
+                android:layout_alignLeft="@+id/min2"
+                android:layout_alignStart="@+id/min2"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus3"
+                android:layout_alignTop="@+id/min3"
+                android:layout_alignRight="@+id/titelView"
+                android:layout_alignEnd="@+id/titelView" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar3"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar2"
+                android:layout_alignLeft="@+id/weightBar2"
+                android:layout_alignStart="@+id/weightBar2"
+                android:layout_alignRight="@+id/weightBar2"
+                android:layout_alignEnd="@+id/weightBar2" />
+
+
+            <!-- Vierde Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight4"
+                android:id="@+id/textWeight4"
+                android:layout_below="@+id/weightBar3"
+                android:layout_centerHorizontal="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min4"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/textWeight4"
+                android:layout_alignLeft="@+id/min3"
+                android:layout_alignStart="@+id/min3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus4"
+                android:layout_alignTop="@+id/min4"
+                android:layout_alignRight="@+id/titelView"
+                android:layout_alignEnd="@+id/titelView" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar4"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar3"
+                android:layout_alignLeft="@+id/weightBar3"
+                android:layout_alignStart="@+id/weightBar3"
+                android:layout_alignRight="@+id/weightBar3"
+                android:layout_alignEnd="@+id/weightBar3" />
+
+
+            <!-- Vijfde Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight5"
+                android:id="@+id/textWeight5"
+                android:layout_below="@+id/weightBar4"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min5"
+                android:layout_below="@+id/textWeight5"
+                android:layout_alignLeft="@+id/min4"
+                android:layout_alignStart="@+id/min4"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus5"
+                android:layout_alignTop="@+id/min5"
+                android:layout_alignLeft="@+id/plus4"
+                android:layout_alignStart="@+id/plus4" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar5"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar4"
+                android:layout_alignLeft="@+id/weightBar4"
+                android:layout_alignStart="@+id/weightBar4"
+                android:layout_alignRight="@+id/weightBar4"
+                android:layout_alignEnd="@+id/weightBar4" />
+
+
+            <!-- Zesde Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight6"
+                android:id="@+id/textWeight6"
+                android:layout_alignTop="@+id/weightBar6"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min6"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/textWeight6"
+                android:layout_alignLeft="@+id/min5"
+                android:layout_alignStart="@+id/min5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus6"
+                android:layout_alignTop="@+id/min6"
+                android:layout_alignLeft="@+id/plus5"
+                android:layout_alignStart="@+id/plus5" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar6"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar5"
+                android:layout_alignLeft="@+id/weightBar5"
+                android:layout_alignStart="@+id/weightBar5"
+                android:layout_alignRight="@+id/weightBar5"
+                android:layout_alignEnd="@+id/weightBar5" />
+
+
+            <!-- Zevende Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight7"
+                android:id="@+id/textWeight7"
+                android:layout_below="@+id/weightBar6"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min7"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textWeight7"
+                android:layout_alignLeft="@+id/min6"
+                android:layout_alignStart="@+id/min6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus7"
+                android:layout_alignTop="@+id/min7"
+                android:layout_alignRight="@+id/titelView"
+                android:layout_alignEnd="@+id/titelView" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar7"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar6"
+                android:layout_alignLeft="@+id/weightBar6"
+                android:layout_alignStart="@+id/weightBar6"
+                android:layout_alignRight="@+id/weightBar6"
+                android:layout_alignEnd="@+id/weightBar6" />
+
+
+            <!-- Achtste Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight8"
+                android:id="@+id/textWeight8"
+                android:layout_below="@+id/weightBar7"
+                android:layout_centerHorizontal="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min8"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/textWeight8"
+                android:layout_alignLeft="@+id/min7"
+                android:layout_alignStart="@+id/min7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus8"
+                android:layout_alignTop="@+id/min8"
+                android:layout_alignRight="@+id/titelView"
+                android:layout_alignEnd="@+id/titelView" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar8"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar7"
+                android:layout_alignLeft="@+id/weightBar7"
+                android:layout_alignStart="@+id/weightBar7"
+                android:layout_alignRight="@+id/weightBar7"
+                android:layout_alignEnd="@+id/weightBar7" />
+
+
+            <!-- Negende Weight -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/weight9"
+                android:id="@+id/textWeight9"
+                android:layout_below="@+id/weightBar8"
+                android:layout_centerHorizontal="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/min"
+                android:id="@+id/min9"
+                android:layout_marginTop="13dp"
+                android:layout_below="@+id/textWeight9"
+                android:layout_alignLeft="@+id/min8"
+                android:layout_alignStart="@+id/min8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/plus"
+                android:id="@+id/plus9"
+                android:layout_alignTop="@+id/min9"
+                android:layout_alignLeft="@+id/plus8"
+                android:layout_alignStart="@+id/plus8" />
+
+            <SeekBar
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/weightBar9"
+                android:paddingTop="31dp"
+                android:paddingBottom="31dp"
+                android:layout_below="@+id/weightBar8"
+                android:layout_alignLeft="@+id/weightBar8"
+                android:layout_alignStart="@+id/weightBar8"
+                android:layout_toLeftOf="@+id/plus9"
+                android:layout_toStartOf="@+id/plus9" />
+
+
+            <Button
+                android:id="@+id/resultButton"
+                android:onClick="conclusion"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="#4CAF50"
+                android:textAllCaps="true"
+                android:text="@string/result"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:alpha="0.87"
+                android:layout_below="@+id/weightBar9"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/resultButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

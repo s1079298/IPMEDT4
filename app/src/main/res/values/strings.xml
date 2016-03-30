@@ -2,6 +2,42 @@
     <string name="app_name">Method.</string>
     <string name="action_settings">Settings</string>
 
-    <string name="titel">What do you think is more important?</string>
+    <string name="titel">Wat vindt je belangrijker?</string>
     <string name="lorum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="people">Mensen</string>
+    <string name="process">Processen</string>
+    <string name="software">Software</string>
+    <string name="documentation">Documentatie</string>
+    <string name="teamwork">Samenwerken</string>
+    <string name="contract">Op Contract</string>
+    <string name="dynamic">Dynamisch</string>
+    <string name="planned">Planmatig</string>
+    <string name="incremental">Incrementeel</string>
+    <string name="bigbang">Big bang</string>
+    <string name="topdown">Top Down</string>
+    <string name="bottomup">Bottom Up</string>
+    <string name="less">Less is more</string>
+    <string name="feature">Feature rich</string>
+    <string name="self">Zelfregie</string>
+    <string name="management">Management</string>
+    <string name="prescriptive">Voorschrijvend</string>
+    <string name="adhoc">Ad Hoc</string>
+    <string name="plus">++</string>
+    <string name="min">--</string>
+    <string name="next">Next</string>
+    <string name="result">Toon Resultaat</string>
+    <string name="resultTitel">Resultaten</string>
+    <string name="weightTitel">Welk gewicht geef je mee?</string>
+
+    <string name="weight1">Mensen/Processen</string>
+    <string name="weight2">Software/Documentatie</string>
+    <string name="weight3">Samenwerken/Op Contract</string>
+    <string name="weight4">Dynamisch/Planmatig</string>
+    <string name="weight5">Incrementeel/Big Bang</string>
+    <string name="weight6">Top Down/Bottom Up</string>
+    <string name="weight7">Less is more/Feature rich</string>
+    <string name="weight8">Zelfregie/Management</string>
+    <string name="weight9">Voorschrijvend/Ad Hoc</string>
+
+
 </resources>
