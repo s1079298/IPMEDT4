@@ -1,18 +1,23 @@
 package com.example.thier.demo;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+
 import android.view.Menu;
 import android.view.MenuItem;
+
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.View.OnClickListener;
 import android.view.View;
+
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
+
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     ImageButton info7;
     ImageButton info8;
     ImageButton info9;
+
+
 
 
     @Override
@@ -77,7 +84,59 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         init();
     }
 
-        //onclicklistener voor alle info buttons instellen
+    /**
+     * Method to make json object request where json response starts wtih {
+     * */
+    /*private void makeJsonObjectRequest() {
+
+        showpDialog();
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest( Method.GET,
+                urlJsonObj, (String)null, new Response.Listener<JSONObject>() {
+
+            @Override
+                public void onResponse(JSONObject response) {
+                    Log.d(TAG, response.toString());
+
+                    try{
+                    //Parsing json object response
+                    // response will be a json object
+                         String test = response.getString("test");
+
+                         jsonResponse = "";
+                         jsonResponse += "TestJSON: " + test + "\n\n";
+                         jsonResponse += "TestExtra: " + test + "\n\n";
+
+                         txtResponse.setText(jsonResponse);
+                    } catch (JSONException e) {
+                         e.printStackTrace();
+                         Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(),
+                                 Toast.LENGTH_LONG).show();
+                    }
+                    hidepDialog();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+               VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+
+                //hide progress dialog
+                hidepDialog();
+            }
+        });
+
+        //Adding request to request queue
+        JSONadapter.getInstance().addToRequestQueue(jsonObjReq);
+    }*/
+
+    /**
+     * Method to make json array request where response starts with [
+     * */
+
+
+       //onclicklistener voor alle info buttons instellen
         public void init() {
             info1 = (ImageButton) findViewById(R.id.info1);
             info1.setOnClickListener(this);
@@ -268,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 
     // A private method to help us initialize our variables.
-    private void initializeVariables() {
+   /* private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         textView = (TextView) findViewById(R.id.vraag1);
     }
@@ -281,7 +340,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         //setSupportActionBar(toolbar);
 
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
