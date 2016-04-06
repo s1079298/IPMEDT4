@@ -5,11 +5,26 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 /**
  * Created by Wendy on 30-3-2016.
  */
-public class Weight extends AppCompatActivity {
+public class Weight extends AppCompatActivity implements OnSeekBarChangeListener {
+
+    SeekBar weightBar;
+    SeekBar weightBar2;
+    SeekBar weightBar3;
+    SeekBar weightBar4;
+    SeekBar weightBar5;
+    SeekBar weightBar6;
+    SeekBar weightBar7;
+    SeekBar weightBar8;
+    SeekBar weightBar9;
+
+    TextView weightBarValue;
+    int value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,42 +33,89 @@ public class Weight extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        //Sliders instellen naar max 3
-        SeekBar seekBar = (SeekBar) findViewById(R.id.weightBar);
-        seekBar.setProgress(1);
-        seekBar.setMax(2);
+        weightBar = (SeekBar) findViewById(R.id.weightBar);
+        weightBarValue = (TextView) findViewById(R.id.weightvalue);
+        weightBar.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar2 = (SeekBar) findViewById(R.id.weightBar2);
-        seekBar2.setProgress(1);
-        seekBar2.setMax(2);
+        weightBar2 = (SeekBar) findViewById(R.id.weightBar2);
+        weightBar2.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar3 = (SeekBar) findViewById(R.id.weightBar3);
-        seekBar3.setProgress(1);
-        seekBar3.setMax(2);
+        weightBar3 = (SeekBar) findViewById(R.id.weightBar3);
+        weightBar3.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar4 = (SeekBar) findViewById(R.id.weightBar4);
-        seekBar4.setProgress(1);
-        seekBar4.setMax(2);
+        weightBar4 = (SeekBar) findViewById(R.id.weightBar4);
+        weightBar4.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar5 = (SeekBar) findViewById(R.id.weightBar5);
-        seekBar5.setProgress(1);
-        seekBar5.setMax(2);
+        weightBar5 = (SeekBar) findViewById(R.id.weightBar5);
+        weightBar5.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar6 = (SeekBar) findViewById(R.id.weightBar6);
-        seekBar6.setProgress(1);
-        seekBar6.setMax(2);
+        weightBar6 = (SeekBar) findViewById(R.id.weightBar6);
+        weightBar6.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar7 = (SeekBar) findViewById(R.id.weightBar7);
-        seekBar7.setProgress(1);
-        seekBar7.setMax(2);
+        weightBar7 = (SeekBar) findViewById(R.id.weightBar7);
+        weightBar7.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar8 = (SeekBar) findViewById(R.id.weightBar8);
-        seekBar8.setProgress(1);
-        seekBar8.setMax(2);
+        weightBar8 = (SeekBar) findViewById(R.id.weightBar8);
+        weightBar8.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar9 = (SeekBar) findViewById(R.id.weightBar9);
-        seekBar9.setProgress(1);
-        seekBar9.setMax(2);
+        weightBar9 = (SeekBar) findViewById(R.id.weightBar9);
+        weightBar9.setOnSeekBarChangeListener(this);
+
+
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        value = progress;
+
+        switch(seekBar.getId()) {
+            case R.id.weightBar:
+                weightBarValue.setText("Value 1: " + value + "\n");
+                break;
+
+            case R.id.weightBar2:
+                weightBarValue.setText("Value 2: " + value + "\n");
+                break;
+
+            case R.id.weightBar3:
+                weightBarValue.setText("Value 3: " + value + "\n");
+                break;
+
+            case R.id.weightBar4:
+                weightBarValue.setText("Value 4: " + value + "\n");
+                break;
+
+            case R.id.weightBar5:
+                weightBarValue.setText("Value 5: " + value + "\n");
+                break;
+
+            case R.id.weightBar6:
+                weightBarValue.setText("Value 6: " + value + "\n");
+                break;
+
+            case R.id.weightBar7:
+                weightBarValue.setText("Value 7: " + value + "\n");
+                break;
+
+            case R.id.weightBar8:
+                weightBarValue.setText("Value 8: " + value + "\n");
+                break;
+
+            case R.id.weightBar9:
+                weightBarValue.setText("Value 9: " + value + "\n");
+                break;
+
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        // TODO Auto-generated  method stub
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        // TODO Auto-generated  method stub
     }
 
     public void conclusion(View view){

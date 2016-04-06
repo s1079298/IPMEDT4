@@ -5,7 +5,8 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <Button
-        android:id="@+id/btnObjRequest"
+        android:id="@+id/button1"
+        android:onClick="button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -23,10 +24,10 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="Make JSON Array Request"
-        android:layout_below="@id/btnObjRequest" />
+        android:layout_below="@id/button1" />
 
     <TextView
-        android:id="@+id/txtResponse"
+        android:id="@+id/seekbarvalue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnArrayRequest"
