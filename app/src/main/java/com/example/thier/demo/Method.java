@@ -8,11 +8,15 @@ import java.io.Serializable;
 public class Method implements Serializable {           // WAAROM serializable
 
     public String methode;
+    public String score;
+    public String weight;
     public String endscore;
 
 
-    public Method(String methode, String endscore){
+    public Method(String methode, String score, String weight, String endscore){
         this.methode = methode;
+        this.score = score;
+        this.weight = weight;
         this.endscore = endscore;
     }
 
