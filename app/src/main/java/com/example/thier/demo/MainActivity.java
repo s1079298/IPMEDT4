@@ -1,31 +1,27 @@
 package com.example.thier.demo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-
 
 import android.view.Menu;
 import android.view.MenuItem;
-
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View.OnClickListener;
 import android.view.View;
-
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
-
-    private TextView textView;
 
     float value;
     //seekbars
@@ -52,16 +48,15 @@ public class MainActivity extends AppCompatActivity
     ImageButton info8;
     ImageButton info9;
 
-
+    String MY_PREFS;
+    SharedPreferences msharedpreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        //Sliders instellen naar max 5
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBarValue = (TextView) findViewById(R.id.seekbarvalue);
         seekBar.setOnSeekBarChangeListener(this);
@@ -90,10 +85,9 @@ public class MainActivity extends AppCompatActivity
         seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
         seekBar9.setOnSeekBarChangeListener(this);
 
-
-
-        //pop ups met info button
         init();
+
+
     }
 
         @Override
@@ -138,6 +132,8 @@ public class MainActivity extends AppCompatActivity
                     break;
 
             }
+
+
         }
 
         @Override
@@ -149,58 +145,6 @@ public class MainActivity extends AppCompatActivity
         public void onStopTrackingTouch(SeekBar seekBar) {
             // TODO Auto-generated  method stub
         }
-
-    /**
-     * Method to make json object request where json response starts wtih {
-     * */
-    /*private void makeJsonObjectRequest() {
-
-        showpDialog();
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest( Method.GET,
-                urlJsonObj, (String)null, new Response.Listener<JSONObject>() {
-
-            @Override
-                public void onResponse(JSONObject response) {
-                    Log.d(TAG, response.toString());
-
-                    try{
-                    //Parsing json object response
-                    // response will be a json object
-                         String test = response.getString("test");
-
-                         jsonResponse = "";
-                         jsonResponse += "TestJSON: " + test + "\n\n";
-                         jsonResponse += "TestExtra: " + test + "\n\n";
-
-                         txtResponse.setText(jsonResponse);
-                    } catch (JSONException e) {
-                         e.printStackTrace();
-                         Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(),
-                                 Toast.LENGTH_LONG).show();
-                    }
-                    hidepDialog();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-               VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-
-                //hide progress dialog
-                hidepDialog();
-            }
-        });
-
-        //Adding request to request queue
-        JSONadapter.getInstance().addToRequestQueue(jsonObjReq);
-    }*/
-
-    /**
-     * Method to make json array request where response starts with [
-     * */
-
 
        //onclicklistener voor alle info buttons instellen
         public void init() {
@@ -360,9 +304,19 @@ public class MainActivity extends AppCompatActivity
 
     public void gewicht(View view){
         Intent intent = new Intent(MainActivity.this, Weight.class);
+
+        intent.putExtra("s", (seekBar.getProgress() / 4));
+        intent.putExtra("s2", (seekBar2.getProgress() / 4));
+        intent.putExtra("s3", (seekBar3.getProgress() / 4));
+        intent.putExtra("s4", (seekBar4.getProgress() / 4 ));
+        intent.putExtra("s5", (seekBar5.getProgress() / 4 ));
+        intent.putExtra("s6", (seekBar6.getProgress() / 4 ));
+        intent.putExtra("s7", (seekBar7.getProgress() / 4 ));
+        intent.putExtra("s8", (seekBar8.getProgress() / 4 ));
+        intent.putExtra("s9", (seekBar9.getProgress() / 4 ));
+
         startActivity(intent);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

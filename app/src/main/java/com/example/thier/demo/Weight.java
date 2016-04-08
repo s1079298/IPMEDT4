@@ -23,6 +23,17 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
     SeekBar weightBar8;
     SeekBar weightBar9;
 
+    double seekBar;
+    double seekBar2;
+    double seekBar3;
+    double seekBar4;
+    double seekBar5;
+    double seekBar6;
+    double seekBar7;
+    double seekBar8;
+    double seekBar9;
+
+
     TextView weightBarValue;
     int value;
 
@@ -32,6 +43,16 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         setContentView(R.layout.weight_layout);
 
         Intent intent = getIntent();
+
+        seekBar = getIntent().getDoubleExtra("s", 0);
+        seekBar2 = getIntent().getDoubleExtra("s2", 0);
+        seekBar3 = getIntent().getDoubleExtra("s3", 0);
+        seekBar4 = getIntent().getDoubleExtra("s4", 0);
+        seekBar5 = getIntent().getDoubleExtra("s5", 0);
+        seekBar6 = getIntent().getDoubleExtra("s6", 0);
+        seekBar7 = getIntent().getDoubleExtra("s7", 0);
+        seekBar8 = getIntent().getDoubleExtra("s8", 0);
+        seekBar9 = getIntent().getDoubleExtra("s9", 0);
 
         weightBar = (SeekBar) findViewById(R.id.weightBar);
         weightBarValue = (TextView) findViewById(R.id.weightvalue);
@@ -119,7 +140,29 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
     }
 
     public void conclusion(View view){
-        Intent intent = new Intent(Weight.this, Conclusion.class);
-        startActivity(intent);
+        Intent FilterIntent = new Intent(Weight.this, Conclusion.class);
+        FilterIntent.putExtra("w", weightBar.getProgress());
+        FilterIntent.putExtra("w2", weightBar2.getProgress());
+        FilterIntent.putExtra("w3", weightBar3.getProgress());
+        FilterIntent.putExtra("w4", weightBar4.getProgress());
+        FilterIntent.putExtra("w5", weightBar5.getProgress());
+        FilterIntent.putExtra("w6", weightBar6.getProgress());
+        FilterIntent.putExtra("w7", weightBar7.getProgress());
+        FilterIntent.putExtra("w8", weightBar8.getProgress());
+        FilterIntent.putExtra("w9", weightBar9.getProgress());
+
+        FilterIntent.putExtra("s", seekBar);
+        FilterIntent.putExtra("s2", seekBar2);
+        FilterIntent.putExtra("s3", seekBar3);
+        FilterIntent.putExtra("s4", seekBar4);
+        FilterIntent.putExtra("s5", seekBar5);
+        FilterIntent.putExtra("s6", seekBar6);
+        FilterIntent.putExtra("s7", seekBar7);
+        FilterIntent.putExtra("s8", seekBar8);
+        FilterIntent.putExtra("s9", seekBar9);
+
+
+
+        startActivity(FilterIntent);
     }
 }

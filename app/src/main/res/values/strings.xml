@@ -40,4 +40,7 @@
     <string name="weight9">Voorschrijvend/Ad Hoc</string>
 
 
+    <string name="MY_PREFS">APP_PREF_FILE</string>
+
+
 </resources>

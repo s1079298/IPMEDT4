@@ -1,11 +1,16 @@
 package com.example.thier.demo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,6 +23,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.thier.demo.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +58,7 @@ public class Conclusion extends AppCompatActivity {
 
     JSONArray jsend = new JSONArray();
 
-
+    float valuetest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +71,42 @@ public class Conclusion extends AppCompatActivity {
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
+        Intent FilterIntent = getIntent();
+        double seekBar = getIntent().getDoubleExtra("s", 0);
+        double seekBar2 = getIntent().getDoubleExtra("s2", 0);
+        double seekBar3 = getIntent().getDoubleExtra("s3", 0);
+        double seekBar4 = getIntent().getDoubleExtra("s4", 0);
+        double seekBar5 = getIntent().getDoubleExtra("s5", 0);
+        double seekBar6 = getIntent().getDoubleExtra("s6", 0);
+        double seekBar7 = getIntent().getDoubleExtra("s7", 0);
+        double seekBar8 = getIntent().getDoubleExtra("s8", 0);
+        double seekBar9 = getIntent().getDoubleExtra("s9", 0);
+
+
+        int weightBar = getIntent().getIntExtra("w", 0);
+        int weightBar2 = getIntent().getIntExtra("w2", 0);
+        int weightBar3 = getIntent().getIntExtra("w3", 0);
+        int weightBar4 = getIntent().getIntExtra("w4", 0);
+        int weightBar5 = getIntent().getIntExtra("w5", 0);
+        int weightBar6 = getIntent().getIntExtra("w6", 0);
+        int weightBar7 = getIntent().getIntExtra("w7", 0);
+        int weightBar8 = getIntent().getIntExtra("w8", 0);
+        int weightBar9 = getIntent().getIntExtra("w9", 0);
+
+        //seekBar = getIntent().getProgress(R.id.seekBar); //(SeekBar)findViewById(R.id.seekBar);
+
         //initialiseren 10 project typen
         JSONArray jproject = new JSONArray();
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
-        jproject.put(1);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
 
         //initialiseren 7 ontwikkel strategieën
         JSONArray jontwikkel = new JSONArray();
@@ -110,34 +141,35 @@ public class Conclusion extends AppCompatActivity {
 
         //initialiseren 9 schalen
         JSONArray jschalen = new JSONArray();
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
-        jschalen.put(1);
+        jschalen.put(seekBar);
+        jschalen.put(seekBar2);
+        jschalen.put(seekBar3);
+        jschalen.put(seekBar4);
+        jschalen.put(seekBar5);
+        jschalen.put(seekBar6);
+        jschalen.put(seekBar7);
+        jschalen.put(seekBar8);
+        jschalen.put(seekBar9);
+
 
         //initialiseren schaalgewicht
         JSONArray jschaalgewicht = new JSONArray();
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
-        jschaalgewicht.put(1);
+        jschaalgewicht.put(weightBar);
+        jschaalgewicht.put(weightBar2);
+        jschaalgewicht.put(weightBar3);
+        jschaalgewicht.put(weightBar4);
+        jschaalgewicht.put(weightBar5);
+        jschaalgewicht.put(weightBar6);
+        jschaalgewicht.put(weightBar7);
+        jschaalgewicht.put(weightBar8);
+        jschaalgewicht.put(weightBar9);
 
         //initialiseren 4 gewichten
         JSONArray jgewicht = new JSONArray();
-        jgewicht.put(1);
-        jgewicht.put(1);
-        jgewicht.put(1);
-        jgewicht.put(1);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
         jgewicht.put(jschaalgewicht);
 
 
@@ -156,6 +188,7 @@ public class Conclusion extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
+
     private void makeJsonArrayRequest() {
 
         showpDialog();
@@ -172,17 +205,12 @@ public class Conclusion extends AppCompatActivity {
 
                             //jsonResponse = "";
 
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 0; i < 5 ; i++) {
 
                                 JSONObject methodlist = (JSONObject) response.get(i);
                                 //methodlist.put("test", jsend);
                                 String method = methodlist.getString(TAG_METHOD);
-                                JSONArray scorearray = methodlist.getJSONArray(TAG_SCORE);
                                 String score = methodlist.getString(TAG_SCORE);
-
-
-                                Log.d("Test", scorearray.toString());
-
                                 String weight = methodlist.getString(TAG_WEIGHT);
                                 String endscore = methodlist.getString(TAG_ENDSCORE);
 
