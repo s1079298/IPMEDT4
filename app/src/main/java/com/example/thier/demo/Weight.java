@@ -161,8 +161,6 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         FilterIntent.putExtra("s8", seekBar8);
         FilterIntent.putExtra("s9", seekBar9);
 
-
-
         startActivity(FilterIntent);
     }
 }

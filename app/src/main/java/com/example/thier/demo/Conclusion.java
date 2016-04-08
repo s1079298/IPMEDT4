@@ -1,18 +1,12 @@
 package com.example.thier.demo;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.SeekBar;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,8 +17,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.thier.demo.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +85,6 @@ public class Conclusion extends AppCompatActivity {
         int weightBar8 = getIntent().getIntExtra("w8", 0);
         int weightBar9 = getIntent().getIntExtra("w9", 0);
 
-        //seekBar = getIntent().getProgress(R.id.seekBar); //(SeekBar)findViewById(R.id.seekBar);
-
         //initialiseren 10 project typen
         JSONArray jproject = new JSONArray();
         jproject.put(0);
@@ -141,15 +131,19 @@ public class Conclusion extends AppCompatActivity {
 
         //initialiseren 9 schalen
         JSONArray jschalen = new JSONArray();
-        jschalen.put(seekBar);
-        jschalen.put(seekBar2);
-        jschalen.put(seekBar3);
-        jschalen.put(seekBar4);
-        jschalen.put(seekBar5);
-        jschalen.put(seekBar6);
-        jschalen.put(seekBar7);
-        jschalen.put(seekBar8);
-        jschalen.put(seekBar9);
+        try {
+            jschalen.put(seekBar / 4);
+            jschalen.put(seekBar2 / 4);
+            jschalen.put(seekBar3 / 4);
+            jschalen.put(seekBar4 / 4);
+            jschalen.put(seekBar5 / 4);
+            jschalen.put(seekBar6 / 4);
+            jschalen.put(seekBar7 / 4);
+            jschalen.put(seekBar8 / 4);
+            jschalen.put(seekBar9 / 4);
+        } catch (JSONException e) {
+        Log.d("Test", jschalen.toString());
+        }
 
 
         //initialiseren schaalgewicht

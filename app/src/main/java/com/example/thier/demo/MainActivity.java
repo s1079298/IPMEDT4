@@ -1,10 +1,7 @@
 package com.example.thier.demo;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.Menu;
@@ -47,9 +44,6 @@ public class MainActivity extends AppCompatActivity
     ImageButton info7;
     ImageButton info8;
     ImageButton info9;
-
-    String MY_PREFS;
-    SharedPreferences msharedpreferences;
 
 
     @Override
@@ -305,15 +299,15 @@ public class MainActivity extends AppCompatActivity
     public void gewicht(View view){
         Intent intent = new Intent(MainActivity.this, Weight.class);
 
-        intent.putExtra("s", (seekBar.getProgress() / 4));
-        intent.putExtra("s2", (seekBar2.getProgress() / 4));
-        intent.putExtra("s3", (seekBar3.getProgress() / 4));
-        intent.putExtra("s4", (seekBar4.getProgress() / 4 ));
-        intent.putExtra("s5", (seekBar5.getProgress() / 4 ));
-        intent.putExtra("s6", (seekBar6.getProgress() / 4 ));
-        intent.putExtra("s7", (seekBar7.getProgress() / 4 ));
-        intent.putExtra("s8", (seekBar8.getProgress() / 4 ));
-        intent.putExtra("s9", (seekBar9.getProgress() / 4 ));
+        intent.putExtra("s", ((double)seekBar.getProgress()));
+        intent.putExtra("s2", ((double)seekBar2.getProgress()));
+        intent.putExtra("s3", ((double)seekBar3.getProgress()));
+        intent.putExtra("s4", ((double)seekBar4.getProgress()));
+        intent.putExtra("s5", ((double)seekBar5.getProgress()));
+        intent.putExtra("s6", ((double)seekBar6.getProgress()));
+        intent.putExtra("s7", ((double)seekBar7.getProgress()));
+        intent.putExtra("s8", ((double)seekBar8.getProgress()));
+        intent.putExtra("s9", ((double)seekBar9.getProgress()));
 
         startActivity(intent);
     }
