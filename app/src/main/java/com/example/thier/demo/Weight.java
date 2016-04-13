@@ -44,6 +44,7 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
 
         Intent intent = getIntent();
 
+        //getintents met doubles van seekbar uit mainactivity
         seekBar = getIntent().getDoubleExtra("s", 0);
         seekBar2 = getIntent().getDoubleExtra("s2", 0);
         seekBar3 = getIntent().getDoubleExtra("s3", 0);
@@ -54,8 +55,8 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         seekBar8 = getIntent().getDoubleExtra("s8", 0);
         seekBar9 = getIntent().getDoubleExtra("s9", 0);
 
+        //weightbars initialisatie met onchangelisteners
         weightBar = (SeekBar) findViewById(R.id.weightBar);
-        weightBarValue = (TextView) findViewById(R.id.weightvalue);
         weightBar.setOnSeekBarChangeListener(this);
 
         weightBar2 = (SeekBar) findViewById(R.id.weightBar2);
@@ -88,45 +89,6 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         value = progress;
-
-        switch(seekBar.getId()) {
-            case R.id.weightBar:
-                weightBarValue.setText("Value 1: " + value + "\n");
-                break;
-
-            case R.id.weightBar2:
-                weightBarValue.setText("Value 2: " + value + "\n");
-                break;
-
-            case R.id.weightBar3:
-                weightBarValue.setText("Value 3: " + value + "\n");
-                break;
-
-            case R.id.weightBar4:
-                weightBarValue.setText("Value 4: " + value + "\n");
-                break;
-
-            case R.id.weightBar5:
-                weightBarValue.setText("Value 5: " + value + "\n");
-                break;
-
-            case R.id.weightBar6:
-                weightBarValue.setText("Value 6: " + value + "\n");
-                break;
-
-            case R.id.weightBar7:
-                weightBarValue.setText("Value 7: " + value + "\n");
-                break;
-
-            case R.id.weightBar8:
-                weightBarValue.setText("Value 8: " + value + "\n");
-                break;
-
-            case R.id.weightBar9:
-                weightBarValue.setText("Value 9: " + value + "\n");
-                break;
-
-        }
     }
 
     @Override
@@ -141,6 +103,8 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
 
     public void conclusion(View view){
         Intent FilterIntent = new Intent(Weight.this, Conclusion.class);
+        //doorsturen van data weightbars en seekbars naar de conclusion.class
+
         FilterIntent.putExtra("w", weightBar.getProgress());
         FilterIntent.putExtra("w2", weightBar2.getProgress());
         FilterIntent.putExtra("w3", weightBar3.getProgress());

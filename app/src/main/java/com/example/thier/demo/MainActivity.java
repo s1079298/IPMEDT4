@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity
@@ -31,8 +30,6 @@ public class MainActivity extends AppCompatActivity
     SeekBar seekBar7;
     SeekBar seekBar8;
     SeekBar seekBar9;
-
-    TextView seekBarValue;
 
     //info buttons
     ImageButton info1;
@@ -51,8 +48,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        //seekbars initialiseren
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBarValue = (TextView) findViewById(R.id.seekbarvalue);
         seekBar.setOnSeekBarChangeListener(this);
 
         seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
@@ -80,54 +77,11 @@ public class MainActivity extends AppCompatActivity
         seekBar9.setOnSeekBarChangeListener(this);
 
         init();
-
-
     }
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             value = ((float)progress / 4 );
-
-            switch(seekBar.getId()) {
-                case R.id.seekBar:
-                    seekBarValue.setText("Value 1: " + value + "\n");
-                    break;
-
-                case R.id.seekBar2:
-                    seekBarValue.setText("Value 2: " + value + "\n");
-                    break;
-
-                case R.id.seekBar3:
-                    seekBarValue.setText("Value 3: " + value + "\n");
-                    break;
-
-                case R.id.seekBar4:
-                    seekBarValue.setText("Value 4: " + value + "\n");
-                    break;
-
-                case R.id.seekBar5:
-                    seekBarValue.setText("Value 5: " + value + "\n");
-                    break;
-
-                case R.id.seekBar6:
-                    seekBarValue.setText("Value 6: " + value + "\n");
-                    break;
-
-                case R.id.seekBar7:
-                    seekBarValue.setText("Value 7: " + value + "\n");
-                    break;
-
-                case R.id.seekBar8:
-                    seekBarValue.setText("Value 8: " + value + "\n");
-                    break;
-
-                case R.id.seekBar9:
-                    seekBarValue.setText("Value 9: " + value + "\n");
-                    break;
-
-            }
-
-
         }
 
         @Override
@@ -288,17 +242,15 @@ public class MainActivity extends AppCompatActivity
                     })
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .show();
-        }
-
-        else {
+        } else {
             // niets
         }
-
     }
 
     public void gewicht(View view){
         Intent intent = new Intent(MainActivity.this, Weight.class);
 
+        //doorsturen data van de seekbars naar weight.class
         intent.putExtra("s", ((double)seekBar.getProgress()));
         intent.putExtra("s2", ((double)seekBar2.getProgress()));
         intent.putExtra("s3", ((double)seekBar3.getProgress()));

@@ -461,8 +461,8 @@
                 android:layout_below="@+id/weightBar8"
                 android:layout_alignLeft="@+id/weightBar8"
                 android:layout_alignStart="@+id/weightBar8"
-                android:layout_toLeftOf="@+id/plus9"
-                android:layout_toStartOf="@+id/plus9" />
+                android:layout_alignRight="@+id/weightBar8"
+                android:layout_alignEnd="@+id/weightBar8" />
 
 
             <Button
@@ -491,13 +491,6 @@
                 android:layout_below="@+id/resultButton"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
-
-            <TextView
-                android:id="@+id/weightvalue"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/resultButton"
-                android:padding="20dp" />
 
 
         </RelativeLayout>

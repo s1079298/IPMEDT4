@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Wendy on 5-4-2016.
  */
-public class Method implements Serializable {           // WAAROM serializable
+public class Method implements Serializable {
 
     public String methode;
     public String score;
@@ -19,8 +19,4 @@ public class Method implements Serializable {           // WAAROM serializable
         this.weight = weight;
         this.endscore = endscore;
     }
-
-    // ADD GETTERS
-
-    // ADD SETTERS
 }
