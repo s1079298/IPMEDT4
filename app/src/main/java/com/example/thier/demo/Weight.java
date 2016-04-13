@@ -57,7 +57,7 @@ public class Weight extends AppCompatActivity {
     }
 
     public void conclusion(View view){
-        Intent intent = new Intent(Weight.this, Conclusion.class);
+        Intent intent = new Intent(Weight.this, PiechartActivity.class);
         startActivity(intent);
     }
 }
