@@ -102,6 +102,10 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
     }
 
     public void conclusion(View view){
+<<<<<<< HEAD
+        Intent intent = new Intent(Weight.this, PiechartActivity.class);
+        startActivity(intent);
+=======
         Intent FilterIntent = new Intent(Weight.this, Conclusion.class);
         //doorsturen van data weightbars en seekbars naar de conclusion.class
 
@@ -126,5 +130,6 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         FilterIntent.putExtra("s9", seekBar9);
 
         startActivity(FilterIntent);
+>>>>>>> refs/remotes/origin/master
     }
 }
