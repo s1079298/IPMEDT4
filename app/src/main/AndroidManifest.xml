@@ -29,6 +29,16 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".SlidersActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.OTHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
