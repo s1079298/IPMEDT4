@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -38,6 +40,11 @@ import java.util.ArrayList;
  * Created by Wendy on 25-3-2016.
  */
 public class Conclusion extends AppCompatActivity {
+
+    Button button1;
+
+
+
 
     //url van json advise
     private String jsondata = "http://www.nieuwemaker.nl/madvise/index.php?view=JSON&action=advise";
@@ -99,6 +106,7 @@ public class Conclusion extends AppCompatActivity {
 
             }
         });
+
 
         Intent intent = getIntent();
 
@@ -232,6 +240,8 @@ public class Conclusion extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
+
+
     private void makeJsonArrayRequest() {
 
         showpDialog();
@@ -332,6 +342,10 @@ public class Conclusion extends AppCompatActivity {
             JSONadapter.getInstance().addToRequestQueue(req);
     }
 
+
+
+
+
 private void showpDialog() {
         if (!pDialog.isShowing())
         pDialog.show();
@@ -341,4 +355,9 @@ private void hidepDialog() {
         if (pDialog.isShowing())
         pDialog.dismiss();
         }
+
+
+
+
+
 }
