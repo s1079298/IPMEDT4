@@ -14,10 +14,13 @@ import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 /**
@@ -25,11 +28,14 @@ import android.widget.Toast;
  */
 public class PiechartActivity extends Activity {
 
+    Button button1;
+
+
     private RelativeLayout mainLayout;
     private PieChart mChart;
     // we're going to display pie chart for smartphones martket shares
-    private float[] yData = { 5, 10, 15, 30, 40 };
-    private String[] xData = { "Method1", "Method2", "Method3", "Method4", "Method5" };
+    private float[] yData = {5, 10, 15, 30, 40};
+    private String[] xData = {"Method1", "Method2", "Method3", "Method4", "Method5"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class PiechartActivity extends Activity {
         mChart = new PieChart(this);
         // add pie chart to main layout
         mainLayout.addView(mChart);
-     //   mainLayout.setBackgroundColor(Color.parseColor("#55656C"));
+        //   mainLayout.setBackgroundColor(Color.parseColor("#55656C"));
 
 
         // configure pie chart
@@ -138,4 +144,23 @@ public class PiechartActivity extends Activity {
         mChart.invalidate();
     }
 
+    public void onCreate1(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Get the view from activity_main.xml
+        setContentView(R.layout.activity_piechart);
+        // Locate the button in activity_main.xml
+        button1 = (Button) findViewById(R.id.btn_filter);
+
+        // Capture button clicks
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(PiechartActivity.this,
+                        MultispinnerProjectTypen.class);
+                startActivity(myIntent);
+            }
+        });
+
+    }
 }

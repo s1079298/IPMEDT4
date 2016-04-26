@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
 
         Button button;
+        Button button1;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -29,19 +30,35 @@ public class MainActivity extends AppCompatActivity
             setContentView(R.layout.activity_main);
 
             // Locate the button in activity_main.xml
+            button1 = (Button) findViewById(R.id.btn_laatste);
+
+            // Capture button clicks
+            button1.setOnClickListener(new OnClickListener() {
+                public void onClick(View arg0) {
+
+                    // Start NewActivity.class
+                    Intent myIntent = new Intent(MainActivity.this,
+                            MultispinnerProjectTypen.class);
+                    startActivity(myIntent);
+                }
+            });
+
+            // Locate the button in activity_main.xml
             button = (Button) findViewById(R.id.btn_nieuw);
 
             // Capture button clicks
             button.setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
 
-                    // Start NewActivity.class
+                    // Start SlidersActivity.class
                     Intent myIntent = new Intent(MainActivity.this,
                             SlidersActivity.class);
                     startActivity(myIntent);
                 }
             });
         }
+
+
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {

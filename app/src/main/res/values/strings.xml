@@ -41,6 +41,22 @@
     <string name="weight8">Zelfregie/Management</string>
     <string name="weight9">Voorschrijvend/Ad Hoc</string>
 
+    <string name="spinnerPT">Selecteer Project Typen</string>
+    <string name="geenPT"> - Geen Project Typen geselecteerd -</string>
+    <string name="weightPT">Gewicht Project Typen</string>
+
+    <string name="spinnerOS">Selecteer Ontwikkel Strategie</string>
+    <string name="geenOS"> - Geen Ontwikkel Strategie geselecteerd -</string>
+    <string name="weightOS">Gewicht Ontwikkel Strategie</string>
+
+    <string name="spinnerPA">Selecteer Proces Activiteiten</string>
+    <string name="geenPA"> - Geen Proces Activiteiten geselecteerd -</string>
+    <string name="weightPA">Gewicht Proces Activiteiten</string>
+
+    <string name="spinnerCM">Selecteer CMMI / CMM</string>
+    <string name="geenCM"> - Geen CMMI / CMM geselecteerd -</string>
+    <string name="weightCM">Gewicht CMMI / CMM</string>
+
 
     <string name="MY_PREFS">APP_PREF_FILE</string>
 
