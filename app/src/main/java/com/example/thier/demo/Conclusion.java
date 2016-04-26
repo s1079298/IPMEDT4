@@ -2,60 +2,231 @@ package com.example.thier.demo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.Legend.LegendPosition;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.Highlight;
+import com.github.mikephil.charting.utils.PercentFormatter;
+
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Wendy on 25-3-2016.
  */
 public class Conclusion extends AppCompatActivity {
 
-    private String JSONArray = "http://nieuwemaker.nl/madvise/index.php?action=comparemethod&data=JAD&results=8&weight=11102";
+    //url van json advise
+    private String jsondata = "http://www.nieuwemaker.nl/madvise/index.php?view=JSON&action=advise";
     RequestQueue requestQueue;
 
-    private static String TAG = MainActivity.class.getSimpleName();
+    private static String TAG = Conclusion.class.getSimpleName();
 
     //Progress Dialog
     private ProgressDialog pDialog;
-
-    //temporary string to show the parsed response
-    private String jsonResponse;
-
-
-    private ListView mListView;
-    private com.example.thier.demo.ListAdapter mAdapter;
-    private List<Method> fullMethod = new ArrayList<>();
 
     //array voor lijst en items
     private static final String TAG_METHOD = "method";
     private static final String TAG_ENDSCORE = "endscore";
 
+    JSONArray jsend = new JSONArray();
+
+    private RelativeLayout mainLayout;
+    private PieChart mChart;
+    private String[] xData = {"", "", "", "", ""};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.method_layout);
+        setContentView(R.layout.activity_piechart);
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+        mChart = new PieChart(this);
+
+        // add pie chart to main layout
+        mainLayout.addView(mChart);
+
+        // configure pie chart
+        mChart.setUsePercentValues(true);
+        mChart.setDescription("Methodes");
+
+        // enable hole and configure
+        mChart.setDrawHoleEnabled(true);
+        mChart.setHoleRadius(45);
+
+        // enable rotation of the chart by touch
+        mChart.setRotationAngle(0);
+        mChart.setRotationEnabled(true);
+
+        //set a chart value selected listener
+        mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                // display msg when value selected
+                if (e == null)
+                    return;
+
+                Toast.makeText(Conclusion.this,
+                        xData[e.getXIndex()] + " = " + e.getVal() + "%",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
 
         Intent intent = getIntent();
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
+
+        // customize legends
+        Legend l = mChart.getLegend();
+        l.setPosition(LegendPosition.BELOW_CHART_CENTER);
+        l.setXEntrySpace(7);
+        l.setYEntrySpace(5);
+
+        //extraint/double van de weight.class ophalen
+        Intent FilterIntent = getIntent();
+        double seekBar = getIntent().getDoubleExtra("s", 0);
+        double seekBar2 = getIntent().getDoubleExtra("s2", 0);
+        double seekBar3 = getIntent().getDoubleExtra("s3", 0);
+        double seekBar4 = getIntent().getDoubleExtra("s4", 0);
+        double seekBar5 = getIntent().getDoubleExtra("s5", 0);
+        double seekBar6 = getIntent().getDoubleExtra("s6", 0);
+        double seekBar7 = getIntent().getDoubleExtra("s7", 0);
+        double seekBar8 = getIntent().getDoubleExtra("s8", 0);
+        double seekBar9 = getIntent().getDoubleExtra("s9", 0);
+
+
+        int weightBar = getIntent().getIntExtra("w", 0);
+        int weightBar2 = getIntent().getIntExtra("w2", 0);
+        int weightBar3 = getIntent().getIntExtra("w3", 0);
+        int weightBar4 = getIntent().getIntExtra("w4", 0);
+        int weightBar5 = getIntent().getIntExtra("w5", 0);
+        int weightBar6 = getIntent().getIntExtra("w6", 0);
+        int weightBar7 = getIntent().getIntExtra("w7", 0);
+        int weightBar8 = getIntent().getIntExtra("w8", 0);
+        int weightBar9 = getIntent().getIntExtra("w9", 0);
+
+        //initialiseren 10 project typen
+        JSONArray jproject = new JSONArray();
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+
+        //initialiseren 7 ontwikkel strategieën
+        JSONArray jontwikkel = new JSONArray();
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+
+        //initialiseren 10 proces activiteiten
+        JSONArray jproces = new JSONArray();
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+
+        //initialiseren 5 CMMI/CMM levels
+        JSONArray jcmmi = new JSONArray();
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
+
+        //initialiseren 9 schalen
+        JSONArray jschalen = new JSONArray();
+        try {
+            jschalen.put(seekBar / 4);
+            jschalen.put(seekBar2 / 4);
+            jschalen.put(seekBar3 / 4);
+            jschalen.put(seekBar4 / 4);
+            jschalen.put(seekBar5 / 4);
+            jschalen.put(seekBar6 / 4);
+            jschalen.put(seekBar7 / 4);
+            jschalen.put(seekBar8 / 4);
+            jschalen.put(seekBar9 / 4);
+        } catch (JSONException e) {
+            Log.d("Test", jschalen.toString());
+        }
+
+
+        //initialiseren schaalgewicht
+        JSONArray jschaalgewicht = new JSONArray();
+        jschaalgewicht.put(weightBar);
+        jschaalgewicht.put(weightBar2);
+        jschaalgewicht.put(weightBar3);
+        jschaalgewicht.put(weightBar4);
+        jschaalgewicht.put(weightBar5);
+        jschaalgewicht.put(weightBar6);
+        jschaalgewicht.put(weightBar7);
+        jschaalgewicht.put(weightBar8);
+        jschaalgewicht.put(weightBar9);
+
+        //initialiseren 4 gewichten
+        JSONArray jgewicht = new JSONArray();
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(jschaalgewicht);
+
+
+        this.jsend.put(jproject);
+        this.jsend.put(jontwikkel);
+        this.jsend.put(jproces);
+        this.jsend.put(jcmmi);
+        this.jsend.put(jschalen);
+        this.jsend.put(jgewicht);
+
+
+        Log.d("Testen verzenden", jsend.toString());
+
 
         makeJsonArrayRequest();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -65,47 +236,89 @@ public class Conclusion extends AppCompatActivity {
 
         showpDialog();
 
-        JsonArrayRequest req = new JsonArrayRequest(JSONArray,
-                new Response.Listener<JSONArray>() {
 
-                    @Override
-                    public void onResponse(JSONArray response)
-                    {
-                        Log.d(TAG, response.toString());
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, jsondata,
+                jsend.toString(), new Response.Listener<JSONArray>() {
 
-                        try {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d(TAG, response.toString());
 
-                            //jsonResponse = "";
 
-                            for (int i = 0; i < response.length(); i++) {
+                try {
+                    //initialiseren xvalue en yvalue van de piechart
+                    ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+                    ArrayList<String> xVals = new ArrayList<String>();
+                        for(int i = 0; i < 5; i++) {
 
-                                JSONObject methodlist = (JSONObject) response.get(i);
+                            JSONObject methods = (JSONObject) response.get(i);
 
-                                String method = methodlist.getString("method");
-                                String methodname = methodlist.getString("endscore");
+                            //adden van strings to JSONObject methods
+                            String method = methods.getString(TAG_METHOD);
+                            String endscore = methods.getString(TAG_ENDSCORE);
 
-                                //in lijst zetten
-                                fullMethod.add(new Method(method, methodname));
-                                Log.d("method", method);
-                                Log.d("methodlist", methodname);
+                            //xvalue van piechart
+                                xVals.add(method);
 
-                                //jsonResponse += "TestList: " + methodlist + "\n\n";
-                            }
-                            mListView = (ListView) findViewById(R.id.showMethodList);
-                            mAdapter = new com.example.thier.demo.ListAdapter(Conclusion.this, 0, fullMethod);
-                            mListView.setAdapter(mAdapter);
+                            //endscore omzetten naar float
+                            float testfloat = Float.parseFloat(endscore);
 
-                            //txtResponse.setText(jsonResponse);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),
-                                    "Error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
+                            //yvalue van piechart
+                                yVals1.add(new Entry(testfloat, i));
+
+                           //creëeren van pie data
+                            PieDataSet dataSet = new PieDataSet(yVals1, "");
+                            dataSet.setSliceSpace(0);
+                            dataSet.setSelectionShift(5);
+
+                            // kleuren adden aan pie chart
+                            ArrayList<Integer> colors = new ArrayList<Integer>();
+
+                            for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                                colors.add(c);
+
+                            for (int c : ColorTemplate.JOYFUL_COLORS)
+                                colors.add(c);
+
+                            for (int c : ColorTemplate.COLORFUL_COLORS)
+                                colors.add(c);
+
+                            for (int c : ColorTemplate.LIBERTY_COLORS)
+                                colors.add(c);
+
+                            for (int c : ColorTemplate.PASTEL_COLORS)
+                                colors.add(c);
+
+                            colors.add(ColorTemplate.getHoloBlue());
+                            dataSet.setColors(colors);
+
+                            // instantiate pie data object now
+                            PieData data = new PieData(xVals, dataSet);
+
+                            //laat percentage zien
+                            data.setValueFormatter(new PercentFormatter());
+                            data.setValueTextSize(15f);
+                            data.setValueTextColor(Color.DKGRAY);
+
+                            //piechart setdata
+                            mChart.setData(data);
+
+                            // undo all highlights
+                            mChart.highlightValues(null);
+                            mChart.setDescription(null);
+                            // update pie chart
+                            mChart.invalidate();
                         }
+            } catch(JSONException e){
+                // JSON error handlen
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
-                        hidepDialog();
-                    }
-                }, new Response.ErrorListener() {
+            hidepDialog();
+
+        }
+    }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "Error: " + error.getMessage());
@@ -115,18 +328,17 @@ public class Conclusion extends AppCompatActivity {
             }
         });
         Log.d("opsturen json", "opsturen");
-
-        //aan queue toevoegen
-        JSONadapter.getInstance().addToRequestQueue(req);
+            //aan queue toevoegen
+            JSONadapter.getInstance().addToRequestQueue(req);
     }
 
-    private void showpDialog() {
+private void showpDialog() {
         if (!pDialog.isShowing())
-            pDialog.show();
-    }
+        pDialog.show();
+        }
 
-    private void hidepDialog() {
+private void hidepDialog() {
         if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
+        pDialog.dismiss();
+        }
 }

@@ -24,7 +24,7 @@
     <string name="adhoc">Ad Hoc</string>
     <string name="plus">++</string>
     <string name="min">--</string>
-    <string name="next">Next</string>
+    <string name="next">Volgende</string>
     <string name="result">Toon Resultaat</string>
     <string name="resultTitel">Resultaten</string>
     <string name="weightTitel">Welk gewicht geef je mee?</string>
@@ -38,6 +38,9 @@
     <string name="weight7">Less is more/Feature rich</string>
     <string name="weight8">Zelfregie/Management</string>
     <string name="weight9">Voorschrijvend/Ad Hoc</string>
+
+
+    <string name="MY_PREFS">APP_PREF_FILE</string>
 
 
 </resources>

@@ -4,26 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-
 import android.view.Menu;
 import android.view.MenuItem;
-
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View.OnClickListener;
 import android.view.View;
-
 import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity
+        implements OnSeekBarChangeListener, OnClickListener {
 
-    private SeekBar seekBar;
-    private TextView textView;
+    float value;
+    //seekbars
+    SeekBar seekBar;
+    SeekBar seekBar2;
+    SeekBar seekBar3;
+    SeekBar seekBar4;
+    SeekBar seekBar5;
+    SeekBar seekBar6;
+    SeekBar seekBar7;
+    SeekBar seekBar8;
+    SeekBar seekBar9;
 
+    //info buttons
     ImageButton info1;
     ImageButton info2;
     ImageButton info3;
@@ -35,106 +43,56 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     ImageButton info9;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        //Sliders instellen naar max 5
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setProgress(2);
-        seekBar.setMax(4);
+        //seekbars initialiseren
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
-        seekBar2.setProgress(2);
-        seekBar2.setMax(4);
+        seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
+        seekBar2.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
-        seekBar3.setProgress(2);
-        seekBar3.setMax(4);
+        seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
+        seekBar3.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar4 = (SeekBar) findViewById(R.id.seekBar4);
-        seekBar4.setProgress(2);
-        seekBar4.setMax(4);
+        seekBar4 = (SeekBar) findViewById(R.id.seekBar4);
+        seekBar4.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar5 = (SeekBar) findViewById(R.id.seekBar5);
-        seekBar5.setProgress(2);
-        seekBar5.setMax(4);
+        seekBar5 = (SeekBar) findViewById(R.id.seekBar5);
+        seekBar5.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar6 = (SeekBar) findViewById(R.id.seekBar6);
-        seekBar6.setProgress(2);
-        seekBar6.setMax(4);
+        seekBar6 = (SeekBar) findViewById(R.id.seekBar6);
+        seekBar6.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar7 = (SeekBar) findViewById(R.id.seekBar7);
-        seekBar7.setProgress(2);
-        seekBar7.setMax(4);
+        seekBar7 = (SeekBar) findViewById(R.id.seekBar7);
+        seekBar7.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar8 = (SeekBar) findViewById(R.id.seekBar8);
-        seekBar8.setProgress(2);
-        seekBar8.setMax(4);
+        seekBar8 = (SeekBar) findViewById(R.id.seekBar8);
+        seekBar8.setOnSeekBarChangeListener(this);
 
-        SeekBar seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
-        seekBar9.setProgress(2);
-        seekBar9.setMax(4);
+        seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
+        seekBar9.setOnSeekBarChangeListener(this);
 
-        //pop ups met info button
         init();
     }
 
-    /**
-     * Method to make json object request where json response starts wtih {
-     * */
-    /*private void makeJsonObjectRequest() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            value = ((float)progress / 4 );
+        }
 
-        showpDialog();
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            // TODO Auto-generated  method stub
+        }
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest( Method.GET,
-                urlJsonObj, (String)null, new Response.Listener<JSONObject>() {
-
-            @Override
-                public void onResponse(JSONObject response) {
-                    Log.d(TAG, response.toString());
-
-                    try{
-                    //Parsing json object response
-                    // response will be a json object
-                         String test = response.getString("test");
-
-                         jsonResponse = "";
-                         jsonResponse += "TestJSON: " + test + "\n\n";
-                         jsonResponse += "TestExtra: " + test + "\n\n";
-
-                         txtResponse.setText(jsonResponse);
-                    } catch (JSONException e) {
-                         e.printStackTrace();
-                         Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(),
-                                 Toast.LENGTH_LONG).show();
-                    }
-                    hidepDialog();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-               VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-
-                //hide progress dialog
-                hidepDialog();
-            }
-        });
-
-        //Adding request to request queue
-        JSONadapter.getInstance().addToRequestQueue(jsonObjReq);
-    }*/
-
-    /**
-     * Method to make json array request where response starts with [
-     * */
-
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            // TODO Auto-generated  method stub
+        }
 
        //onclicklistener voor alle info buttons instellen
         public void init() {
@@ -284,63 +242,27 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     })
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .show();
-        }
-
-        else {
+        } else {
             // niets
         }
-
     }
 
     public void gewicht(View view){
         Intent intent = new Intent(MainActivity.this, Weight.class);
+
+        //doorsturen data van de seekbars naar weight.class
+        intent.putExtra("s", ((double)seekBar.getProgress()));
+        intent.putExtra("s2", ((double)seekBar2.getProgress()));
+        intent.putExtra("s3", ((double)seekBar3.getProgress()));
+        intent.putExtra("s4", ((double)seekBar4.getProgress()));
+        intent.putExtra("s5", ((double)seekBar5.getProgress()));
+        intent.putExtra("s6", ((double)seekBar6.getProgress()));
+        intent.putExtra("s7", ((double)seekBar7.getProgress()));
+        intent.putExtra("s8", ((double)seekBar8.getProgress()));
+        intent.putExtra("s9", ((double)seekBar9.getProgress()));
+
         startActivity(intent);
     }
-
-
-        /**initializeVariables();
-
-         // Initialize the textview with '0'.
-         textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
-
-         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-         int progress = 0;
-
-            @Override000
-            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                progress = progresValue;
-                Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(getApplicationContext(), "Started tracking seekbar", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                textView.setText("Covered: " + progress + "/" + seekBar.getMax());
-                Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
-            }
-        }}
-            };**/
-
-
-    // A private method to help us initialize our variables.
-   /* private void initializeVariables() {
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        textView = (TextView) findViewById(R.id.vraag1);
-    }
-
-
-    protected void onCreate1(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

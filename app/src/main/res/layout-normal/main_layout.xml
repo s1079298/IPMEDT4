@@ -66,6 +66,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar"
+                android:max="4"
+                android:progress="2"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:paddingTop="16dp"
@@ -113,6 +115,8 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar2"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar"
@@ -160,6 +164,8 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar3"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar2"
@@ -200,20 +206,22 @@
                 android:text="@string/planned"
                 android:id="@+id/textView8"
                 android:layout_below="@+id/seekBar3"
-                android:layout_alignLeft="@+id/textView6"
-                android:layout_alignStart="@+id/textView6" />
+                android:layout_alignRight="@+id/seekBar3"
+                android:layout_alignEnd="@+id/seekBar3" />
 
             <SeekBar
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar4"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar3"
                 android:layout_alignLeft="@+id/seekBar3"
                 android:layout_alignStart="@+id/seekBar3"
-                android:layout_alignRight="@+id/textView16"
-                android:layout_alignEnd="@+id/textView16" />
+                android:layout_alignRight="@+id/seekBar3"
+                android:layout_alignEnd="@+id/seekBar3" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -254,13 +262,15 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar5"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar4"
                 android:layout_alignLeft="@+id/seekBar4"
                 android:layout_alignStart="@+id/seekBar4"
-                android:layout_alignRight="@+id/textView12"
-                android:layout_alignEnd="@+id/textView12" />
+                android:layout_alignRight="@+id/seekBar4"
+                android:layout_alignEnd="@+id/seekBar4" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -302,6 +312,8 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar6"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar5"
@@ -350,13 +362,15 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar7"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar6"
                 android:layout_alignLeft="@+id/seekBar6"
                 android:layout_alignStart="@+id/seekBar6"
-                android:layout_alignRight="@+id/textView16"
-                android:layout_alignEnd="@+id/textView16" />
+                android:layout_alignRight="@+id/seekBar6"
+                android:layout_alignEnd="@+id/seekBar6" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -389,22 +403,23 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/management"
                 android:id="@+id/textView16"
-                android:layout_alignBaseline="@+id/textView15"
-                android:layout_alignBottom="@+id/textView15"
-                android:layout_alignRight="@+id/textView14"
-                android:layout_alignEnd="@+id/textView14" />
+                android:layout_below="@+id/seekBar7"
+                android:layout_alignRight="@+id/seekBar8"
+                android:layout_alignEnd="@+id/seekBar8" />
 
             <SeekBar
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar8"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar7"
                 android:layout_alignLeft="@+id/seekBar7"
                 android:layout_alignStart="@+id/seekBar7"
-                android:layout_alignRight="@+id/textView16"
-                android:layout_alignEnd="@+id/textView16" />
+                android:layout_alignRight="@+id/seekBar7"
+                android:layout_alignEnd="@+id/seekBar7" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -437,22 +452,23 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/adhoc"
                 android:id="@+id/textView18"
-                android:layout_alignBaseline="@+id/textView17"
-                android:layout_alignBottom="@+id/textView17"
-                android:layout_alignRight="@+id/textView14"
-                android:layout_alignEnd="@+id/textView14" />
+                android:layout_below="@+id/seekBar8"
+                android:layout_alignRight="@+id/seekBar8"
+                android:layout_alignEnd="@+id/seekBar8" />
 
             <SeekBar
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBar9"
+                android:max="4"
+                android:progress="2"
                 android:paddingTop="31dp"
                 android:paddingBottom="31dp"
                 android:layout_below="@+id/seekBar8"
                 android:layout_alignLeft="@+id/textView15"
                 android:layout_alignStart="@+id/textView15"
-                android:layout_alignRight="@+id/textView16"
-                android:layout_alignEnd="@+id/textView16" />
+                android:layout_alignRight="@+id/seekBar8"
+                android:layout_alignEnd="@+id/seekBar8" />
 
             <ImageButton
                 android:layout_width="wrap_content"

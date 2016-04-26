@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.thier.demo.Method;
-
 import java.util.List;
 
 /**
@@ -29,20 +27,26 @@ public class ListAdapter extends ArrayAdapter<Method> {
             LayoutInflater li = LayoutInflater.from(getContext());
             convertView = li.inflate(R.layout.method_list_item, parent, false);
             vh.name = (TextView) convertView.findViewById(R.id.methode);
-            vh.code = (TextView) convertView.findViewById(R.id.endscore);
+            vh.score = (TextView) convertView.findViewById(R.id.score);
+            vh.endscore = (TextView) convertView.findViewById(R.id.endscore);
+            vh.weight = (TextView) convertView.findViewById(R.id.weight);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
         Method cm = getItem(position);
         vh.name.setText(cm.methode);
-        vh.code.setText(cm.endscore);
+        vh.score.setText(cm.score);
+        vh.weight.setText(cm.weight);
+        vh.endscore.setText(cm.endscore);
         return convertView;
     }
 
     private static class ViewHolder {
         TextView name;
-        TextView code;
+        TextView score;
+        TextView weight;
+        TextView endscore;
 
     }
 }
