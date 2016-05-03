@@ -38,7 +38,11 @@ public class MainActivity extends AppCompatActivity
 
                     // Start NewActivity.class
                     Intent myIntent = new Intent(MainActivity.this,
+<<<<<<< HEAD
+                            test.class);
+=======
                             MultispinnerProjectTypen.class);
+>>>>>>> origin/Thierry
                     startActivity(myIntent);
                 }
             });

@@ -61,6 +61,16 @@
         </activity>
 
         <activity android:name=".MultispinnerProjectTypen">
+<<<<<<< HEAD
+            <intent-filter>
+                <action android:name="android.intent.action.OTHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".test">
+=======
+>>>>>>> origin/Thierry
             <intent-filter>
                 <action android:name="android.intent.action.OTHER"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
