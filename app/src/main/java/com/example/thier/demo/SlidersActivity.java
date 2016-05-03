@@ -1,10 +1,7 @@
 package com.example.thier.demo;
 
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.SharedPreferences;
-=======
->>>>>>> origin/Thierry
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -15,30 +12,21 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View.OnClickListener;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
-=======
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
->>>>>>> origin/Thierry
 
 
 public class SlidersActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
 
-<<<<<<< HEAD
-
     SharedPreferences sharedPreferences;
-
-
     Button btnSave, btnLoad, btnReset;
-
-
 
     /**
      * btn_Event()
@@ -167,11 +155,6 @@ public class SlidersActivity extends AppCompatActivity
         seekBar = (SeekBar)findViewById(R.id.seekBar);
     }
 
-
-
-
-=======
->>>>>>> origin/Thierry
     float value;
     //seekbars
     SeekBar seekBar;
@@ -230,9 +213,6 @@ public class SlidersActivity extends AppCompatActivity
         seekBar9.setOnSeekBarChangeListener(this);
 
         init();
-<<<<<<< HEAD
-
-
 
         initPreferences(); //SharedPreferences
         initView(); //View
@@ -241,12 +221,6 @@ public class SlidersActivity extends AppCompatActivity
         /**
          *onCreate sharedPreferences       */
 
-
-
-
-
-=======
->>>>>>> origin/Thierry
     }
 
     @Override

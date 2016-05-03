@@ -29,6 +29,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
 
+import android.view.View.OnClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,12 +40,9 @@ import java.util.ArrayList;
 /**
  * Created by Wendy on 25-3-2016.
  */
-public class Conclusion extends AppCompatActivity {
+public class Conclusion extends AppCompatActivity implements OnClickListener {
 
     Button button1;
-
-
-
 
     //url van json advise
     private String jsondata = "http://www.nieuwemaker.nl/madvise/index.php?view=JSON&action=advise";
@@ -120,6 +118,19 @@ public class Conclusion extends AppCompatActivity {
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
 
+        //project typen filters ophalen
+        int value0 = getIntent().getIntExtra("value0", 0);
+        int value1 = getIntent().getIntExtra("value1", 0);
+        int value2 = getIntent().getIntExtra("value2", 0);
+        int value3 = getIntent().getIntExtra("value3", 0);
+        int value4 = getIntent().getIntExtra("value4", 0);
+        int value5 = getIntent().getIntExtra("value5", 0);
+        int value6 = getIntent().getIntExtra("value6", 0);
+        int value7 = getIntent().getIntExtra("value7", 0);
+        int value8 = getIntent().getIntExtra("value8", 0);
+        int value9 = getIntent().getIntExtra("value9", 0);
+
+
         //extraint/double van de weight.class ophalen
         Intent FilterIntent = getIntent();
         double seekBar = getIntent().getDoubleExtra("s", 0);
@@ -131,7 +142,6 @@ public class Conclusion extends AppCompatActivity {
         double seekBar7 = getIntent().getDoubleExtra("s7", 0);
         double seekBar8 = getIntent().getDoubleExtra("s8", 0);
         double seekBar9 = getIntent().getDoubleExtra("s9", 0);
-
 
         int weightBar = getIntent().getIntExtra("w", 0);
         int weightBar2 = getIntent().getIntExtra("w2", 0);
@@ -145,16 +155,16 @@ public class Conclusion extends AppCompatActivity {
 
         //initialiseren 10 project typen
         JSONArray jproject = new JSONArray();
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
-        jproject.put(0);
+        jproject.put(value0);
+        jproject.put(value1);
+        jproject.put(value2);
+        jproject.put(value3);
+        jproject.put(value4);
+        jproject.put(value5);
+        jproject.put(value6);
+        jproject.put(value7);
+        jproject.put(value8);
+        jproject.put(value9);
 
         //initialiseren 7 ontwikkel strategieën
         JSONArray jontwikkel = new JSONArray();
@@ -342,9 +352,16 @@ public class Conclusion extends AppCompatActivity {
             JSONadapter.getInstance().addToRequestQueue(req);
     }
 
+    @Override
+    public void onClick(View v) {
 
+    }
 
+    public void filteren(View v){
+        Intent i = new Intent(Conclusion.this, MultispinnerProjectTypen.class);
 
+        startActivity(i);
+    }
 
 private void showpDialog() {
         if (!pDialog.isShowing())

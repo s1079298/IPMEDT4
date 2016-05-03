@@ -5,15 +5,32 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MultispinnerProjectTypen extends Activity implements OnClickListener {
 	protected Button selectProjectTypenButton;
+	public int value0;
+	public int value1;
+	public int value2;
+	public int value3;
+	public int value4;
+	public int value5;
+	public int value6;
+	public int value7;
+	public int value8;
+	public int value9;
 
-	protected CharSequence[] projecttypen = { "Commercieel (off the shelf)", "Data Warehouse", "Emergency release", "Integratie / vervanging", "OO applicatie ontwikkeling", "Procedurele applicatie ontwikkeling","Voortdurend onderhoud", "Outsourced", "Uitfasering", "Bedrijfs-kritische ontwikkeling"  };
+
+
+	protected CharSequence[] projecttypen = { "Commercieel (off the shelf)", "Data Warehouse",
+			"Emergency release", "Integratie / vervanging", "OO applicatie ontwikkeling",
+			"Procedurele applicatie ontwikkeling","Voortdurend onderhoud", "Outsourced",
+			"Uitfasering", "Bedrijfs-kritische ontwikkeling"  };
 	protected ArrayList<CharSequence> selectedProjectTypen = new ArrayList<CharSequence>();
 
 	/** Called when the activity is first created. */
@@ -48,7 +65,7 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 	}
 
 	protected void showSelectProjectTypenDialog() {
-		boolean[] checkedProjectTypen = new boolean[projecttypen.length];
+		final boolean[] checkedProjectTypen = new boolean[projecttypen.length];
 		int count = projecttypen.length;
 
 		for(int i = 0; i < count; i++)
@@ -59,8 +76,53 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 				if(isChecked)
                     selectedProjectTypen.add(projecttypen[which]);
+				Log.d("Selected Project Typen", String.valueOf(selectedProjectTypen));
+
+				//als checkbox aangeklikt is en het gaat om "deze projecttype" value wordt 1 voor versturen json
+				if(isChecked && projecttypen[which].equals("Commercieel (off the shelf)")){
+					value0 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Data Warehouse")){
+					value1 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Emergency release")){
+					value2 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Integratie / vervanging")){
+					value3 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("OO applicatie ontwikkeling")){
+					value4 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Procedurele applicatie ontwikkeling")){
+					value5 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Voortdurend onderhoud")){
+					value6 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Outsourced")){
+					value7 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Uitfasering")){
+					value8 = 1;
+				}
+
+				if(isChecked && projecttypen[which].equals("Bedrijfs-kritische ontwikkeling")){
+					value9 = 1;
+				}
+
 				else
                     selectedProjectTypen.remove(projecttypen[which]);
+
+				Log.d("Test", String.valueOf(which));
 
                 onChangeSelectedProjectTypen();
 			}
@@ -69,8 +131,30 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Selecteer Project Typen");
 		builder.setMultiChoiceItems(projecttypen, checkedProjectTypen, ProjectTypenDialogListener);
+		Log.d("Wat print ie", String.valueOf(projecttypen));
 
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+
+	//als op button bereken wordt gedrukt wordt conclusie opnieuw berekend
+	public void berekenfilter(View v){
+		//initialiseren intent
+		Intent i = new Intent(MultispinnerProjectTypen.this, Conclusion.class);
+
+		//verstuur data van de project typen checkboxes
+		i.putExtra("value0", value0);
+		i.putExtra("value1", value1);
+		i.putExtra("value2", value2);
+		i.putExtra("value3", value3);
+		i.putExtra("value4", value4);
+		i.putExtra("value5", value5);
+		i.putExtra("value6", value6);
+		i.putExtra("value7", value7);
+		i.putExtra("value8", value8);
+		i.putExtra("value9", value9);
+
+		//start intent
+		startActivity(i);
 	}
 }

@@ -41,6 +41,8 @@
     <string name="weight8">Zelfregie/Management</string>
     <string name="weight9">Voorschrijvend/Ad Hoc</string>
 
+    <string name="filterstring">Filteren</string>
+
     <string name="spinnerPT">Selecteer Project Typen</string>
     <string name="geenPT"> - Geen Project Typen geselecteerd -</string>
     <string name="weightPT">Gewicht Project Typen</string>
@@ -57,6 +59,7 @@
     <string name="geenCM"> - Geen CMMI / CMM geselecteerd -</string>
     <string name="weightCM">Gewicht CMMI / CMM</string>
 
+    <string name="bereken">Bereken</string>
 
     <string name="MY_PREFS">APP_PREF_FILE</string>
 
