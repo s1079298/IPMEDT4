@@ -20,12 +20,8 @@ android {
 }
 
 repositories {
-<<<<<<< HEAD
-    maven { url "https://jitpack.io" }
-=======
     mavenCentral()
     maven { url "https://jitpack.io"}
->>>>>>> refs/remotes/origin/master
 }
 
 dependencies {
@@ -34,9 +30,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.mcxiaoke.volley:library:1.0.18'
-<<<<<<< HEAD
-=======
     compile 'com.android.support:recyclerview-v7:+'
->>>>>>> refs/remotes/origin/master
     compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
+
 }
