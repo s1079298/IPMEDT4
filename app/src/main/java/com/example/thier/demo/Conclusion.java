@@ -57,6 +57,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     private static final String TAG_METHOD = "method";
     private static final String TAG_ENDSCORE = "endscore";
 
+    //jsonarray voor het verzenden van de data
     JSONArray jsend = new JSONArray();
 
     private RelativeLayout mainLayout;
@@ -130,7 +131,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         int value8 = getIntent().getIntExtra("value8", 0);
         int value9 = getIntent().getIntExtra("value9", 0);
 
-
         //extraint/double van de weight.class ophalen
         Intent FilterIntent = getIntent();
         double seekBar = getIntent().getDoubleExtra("s", 0);
@@ -152,6 +152,12 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         int weightBar7 = getIntent().getIntExtra("w7", 0);
         int weightBar8 = getIntent().getIntExtra("w8", 0);
         int weightBar9 = getIntent().getIntExtra("w9", 0);
+
+        //gewichten van de filters ophalen
+        int gewichtPT = getIntent().getIntExtra("g", 0);
+        int gewichtOS = getIntent().getIntExtra("g2", 0);
+        int gewichtPA = getIntent().getIntExtra("g3", 0);
+        int gewichtCM = getIntent().getIntExtra("g4", 0);
 
         //initialiseren 10 project typen
         JSONArray jproject = new JSONArray();
@@ -228,13 +234,14 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
         //initialiseren 4 gewichten
         JSONArray jgewicht = new JSONArray();
-        jgewicht.put(0);
-        jgewicht.put(0);
-        jgewicht.put(0);
-        jgewicht.put(0);
+        jgewicht.put(gewichtPT);
+        jgewicht.put(gewichtOS);
+        jgewicht.put(gewichtPA);
+        jgewicht.put(gewichtCM);
         jgewicht.put(jschaalgewicht);
 
 
+        //verzenden van de data met json
         this.jsend.put(jproject);
         this.jsend.put(jontwikkel);
         this.jsend.put(jproces);
@@ -250,12 +257,9 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
-
-
     private void makeJsonArrayRequest() {
 
         showpDialog();
-
 
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, jsondata,
                 jsend.toString(), new Response.Listener<JSONArray>() {
@@ -372,9 +376,4 @@ private void hidepDialog() {
         if (pDialog.isShowing())
         pDialog.dismiss();
         }
-
-
-
-
-
 }

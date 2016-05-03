@@ -10,10 +10,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Button;
+import android.widget.SeekBar;
 
-public class MultispinnerProjectTypen extends Activity implements OnClickListener {
+public class MultispinnerProjectTypen extends Activity implements OnSeekBarChangeListener, OnClickListener {
 	protected Button selectProjectTypenButton;
+
+	//value voor de seekbar
+	public int value;
+
+	//value van de checkboxes van Project Typen
 	public int value0;
 	public int value1;
 	public int value2;
@@ -25,7 +32,11 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 	public int value8;
 	public int value9;
 
-
+	//gewichten
+	SeekBar gewichtPT;
+	SeekBar gewichtOS;
+	SeekBar gewichtPA;
+	SeekBar gewichtCM;
 
 	protected CharSequence[] projecttypen = { "Commercieel (off the shelf)", "Data Warehouse",
 			"Emergency release", "Integratie / vervanging", "OO applicatie ontwikkeling",
@@ -38,6 +49,19 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_spinner_layout);
+
+		//seekbars initialiseren van de gewichten
+		gewichtPT = (SeekBar) findViewById(R.id.weightBar);
+		gewichtPT.setOnSeekBarChangeListener(this);
+
+		gewichtOS = (SeekBar) findViewById(R.id.weightBarOS);
+		gewichtOS.setOnSeekBarChangeListener(this);
+
+		gewichtPA = (SeekBar) findViewById(R.id.weightBarPA);
+		gewichtPA.setOnSeekBarChangeListener(this);
+
+		gewichtCM = (SeekBar) findViewById(R.id.weightBarCM);
+		gewichtCM.setOnSeekBarChangeListener(this);
 
 		selectProjectTypenButton = (Button) findViewById(R.id.select_ProjectTypen);
         selectProjectTypenButton.setOnClickListener(this);
@@ -137,6 +161,21 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 		dialog.show();
 	}
 
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		value = progress;
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated  method stub
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated  method stub
+	}
+
 	//als op button bereken wordt gedrukt wordt conclusie opnieuw berekend
 	public void berekenfilter(View v){
 		//initialiseren intent
@@ -154,6 +193,10 @@ public class MultispinnerProjectTypen extends Activity implements OnClickListene
 		i.putExtra("value8", value8);
 		i.putExtra("value9", value9);
 
+		i.putExtra("g", gewichtPT.getProgress());
+		i.putExtra("g2", gewichtOS.getProgress());
+		i.putExtra("g3", gewichtPA.getProgress());
+		i.putExtra("g4", gewichtCM.getProgress());
 		//start intent
 		startActivity(i);
 	}
