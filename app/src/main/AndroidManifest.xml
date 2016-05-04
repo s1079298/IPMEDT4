@@ -60,20 +60,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MultispinnerProjectTypen">
-
+        <activity android:name=".Multispinner">
             <intent-filter>
                 <action android:name="android.intent.action.OTHER"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".test">
-            <intent-filter>
-                <action android:name="android.intent.action.OTHER"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
 
     </application>
 

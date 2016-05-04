@@ -17,8 +17,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -157,7 +155,7 @@ public class PiechartActivity extends Activity {
 
                 // Start NewActivity.class
                 Intent myIntent = new Intent(PiechartActivity.this,
-                        MultispinnerProjectTypen.class);
+                        Multispinner.class);
                 startActivity(myIntent);
             }
         });

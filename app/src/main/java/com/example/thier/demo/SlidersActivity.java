@@ -54,8 +54,7 @@ public class SlidersActivity extends AppCompatActivity
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                seekBar.setProgress(0);
+                seekBar.setProgress((0));
                 seekBar2.setProgress(0);
                 seekBar3.setProgress(0);
                 seekBar4.setProgress(0);
@@ -64,8 +63,6 @@ public class SlidersActivity extends AppCompatActivity
                 seekBar7.setProgress(0);
                 seekBar8.setProgress(0);
                 seekBar9.setProgress(0);
-
-
             }
         });
 

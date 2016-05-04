@@ -60,6 +60,7 @@
     <string name="weightCM">Gewicht CMMI / CMM</string>
 
     <string name="bereken">Bereken</string>
+    <string name="filtertitel">Selecteer Filters</string>
 
     <string name="MY_PREFS">APP_PREF_FILE</string>
 
