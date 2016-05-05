@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textAllCaps="true"
+            android:alpha="0.87"
+            android:textSize="20sp"
+            android:text="name"
+            android:id="@+id/titelViewPT"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="16dp"
+            android:paddingRight="16dp"
+            android:paddingEnd="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Description"
+            android:id="@+id/textViewdescription"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:alpha="0.87"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/BarchartProjecttype"
+            android:id="@+id/textViewBarchartProjecttype"
+            android:padding="5dip"
+            android:layout_gravity="center_horizontal" />
+
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chartProjectType"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:alpha="0.87"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/BarchartOntwikkelstrategie"
+            android:id="@+id/textViewBarchartOntwikkelstrategie"
+            android:padding="5dip"
+            android:layout_gravity="center_horizontal" />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chartstrategy"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:alpha="0.87"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/BarchartProcesActiviteiten"
+            android:id="@+id/textViewBarchartProcesActiviteiten"
+            android:padding="5dip"
+            android:layout_gravity="center_horizontal" />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chartactivity"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:alpha="0.87"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/BarchartCMM"
+            android:id="@+id/textViewBarchartCMM"
+            android:padding="5dip"
+            android:layout_gravity="center_horizontal" />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/chartcmmLevel"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+    </LinearLayout>
+
+</ScrollView>

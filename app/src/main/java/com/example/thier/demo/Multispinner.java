@@ -363,8 +363,8 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		//initialiseren intent
 		Intent i = new Intent(Multispinner.this, Conclusion.class);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("data", DEFAULT);
+        SharedPreferences sharedPreferences = getSharedPreferences("filterdata", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("filterdata", DEFAULT);
 
         Log.d("Data Multispinner", name);
 

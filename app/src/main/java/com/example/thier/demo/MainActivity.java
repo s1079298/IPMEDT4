@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
                     // Start NewActivity.class
                     Intent myIntent = new Intent(MainActivity.this,
-                            Conclusion.class);
+                            BarchartActivity.class);
 
                     startActivity(myIntent);
                 }

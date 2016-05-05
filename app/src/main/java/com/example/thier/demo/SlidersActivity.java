@@ -25,132 +25,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 public class SlidersActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
 
-    SharedPreferences sharedPreferences;
-    Button btnSave, btnLoad, btnReset;
-
-    /**
-     * btn_Event()
-     *
-     *  btnSave : saveState() ->
-     * btnLoad : loadState() ->
-     * btnReset :      */
-    private void btn_Event() {
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveState(); //
-                Toast.makeText(getApplicationContext(), "Voorkeur opgeslagen", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadState(); //
-            }
-        });
-
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                seekBar.setProgress((0));
-                seekBar2.setProgress(0);
-                seekBar3.setProgress(0);
-                seekBar4.setProgress(0);
-                seekBar5.setProgress(0);
-                seekBar6.setProgress(0);
-                seekBar7.setProgress(0);
-                seekBar8.setProgress(0);
-                seekBar9.setProgress(0);
-            }
-        });
-
-    }
-
-    /**
-     * loadState()
-     *
-     *
-     * sharedPreferences.getString("key", defaultValue)  key defaultValue key
-     *                   getInt
-     *                   getBoolean     *
-     * EditText String
-     * CheckBox Boolean
-     * seekBarInt
-     */
-
-    private void loadState() {
-
-        seekBar.setProgress(sharedPreferences.getInt("seekBar",0));
-        seekBar2.setProgress(sharedPreferences.getInt("seekBar2",0));
-        seekBar3.setProgress(sharedPreferences.getInt("seekBar3",0));
-        seekBar4.setProgress(sharedPreferences.getInt("seekBar4",0));
-        seekBar5.setProgress(sharedPreferences.getInt("seekBar5",0));
-        seekBar6.setProgress(sharedPreferences.getInt("seekBar6",0));
-        seekBar7.setProgress(sharedPreferences.getInt("seekBar7",0));
-        seekBar8.setProgress(sharedPreferences.getInt("seekBar8",0));
-        seekBar9.setProgress(sharedPreferences.getInt("seekBar9",0));
-
-    }
-
-    /**
-     * saveState()
-     *
-     *
-     * SharedPreferences Editor
-     * SharedPreferences.Editor editor = sharedPreferences.edit(); -> editor
-     *
-     * editor.putString("key", value)  key valuekey()
-     *        putInt
-     *        putBoolean      *
-     *        EditTextString
-     * CheckBoxBoolean
-     * seekBarInt
-     *
-     * commit()SharedPreferences
-     */
-
-    private void saveState() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("seekBar", seekBar.getProgress());
-        editor.putInt("seekBar2", seekBar2.getProgress());
-        editor.putInt("seekBar3", seekBar3.getProgress());
-        editor.putInt("seekBar4", seekBar4.getProgress());
-        editor.putInt("seekBar5", seekBar5.getProgress());
-        editor.putInt("seekBar6", seekBar6.getProgress());
-        editor.putInt("seekBar7", seekBar7.getProgress());
-        editor.putInt("seekBar8", seekBar8.getProgress());
-        editor.putInt("seekBar9", seekBar9.getProgress());
-
-
-
-
-
-
-        editor.commit();
-    }
-
-    /**
-     * initPreferences()
-     *
-     * SharedPreferences
-     * sharedPreferences = getSharedPreferences("
-     * SharedPreferencesdata/data/[shared_prefs/xml"
-     *
-     * MODE_PRIVATE SharedPreferences
-     */
-    private void initPreferences() {
-        sharedPreferences = getSharedPreferences("pref", MODE_PRIVATE);
-    }
-
-    private void initView() {
-
-        btnSave = (Button)findViewById(R.id.btnSave);
-        btnLoad = (Button)findViewById(R.id.btnLoad);
-        btnReset = (Button)findViewById(R.id.btnReset);
-        seekBar = (SeekBar)findViewById(R.id.seekBar);
-    }
 
     float value;
     //seekbars
@@ -211,12 +85,7 @@ public class SlidersActivity extends AppCompatActivity
 
         init();
 
-        initPreferences(); //SharedPreferences
-        initView(); //View
-        btn_Event(); //
-        loadState(); //
-        /**
-         *onCreate sharedPreferences       */
+
 
     }
 

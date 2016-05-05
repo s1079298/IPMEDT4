@@ -396,15 +396,15 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
 
     public void filteren(View v){
-        SharedPreferences sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("filterdata", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("data", jsendfilter.toString());
+        editor.putString("filterdata", jsendfilter.toString());
 
         editor.commit();
 
-        Toast.makeText(this, "Opslaan data test", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Opslaan slidersdata test", Toast.LENGTH_LONG).show();
 
         Log.d("Testen van sharedpref", jsend.toString());
 

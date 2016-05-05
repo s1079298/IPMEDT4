@@ -64,5 +64,11 @@
 
     <string name="MY_PREFS">APP_PREF_FILE</string>
 
+    <string name="BarchartProjecttype">Project Type</string>
+    <string name="BarchartOntwikkelstrategie">Ontwikkel strategie</string>
+    <string name="BarchartProcesActiviteiten">Proces Activiteiten</string>
+    <string name="BarchartCMM">CMMI / CMM</string>
+
+
 
 </resources>
