@@ -39,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Wendy on 25-3-2016.
@@ -51,6 +52,8 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     RequestQueue requestQueue;
 
     private static String TAG = Conclusion.class.getSimpleName();
+    String listString = "";
+    StringBuilder sb = new StringBuilder();
 
     //Progress Dialog
     private ProgressDialog pDialog;
@@ -88,26 +91,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         // enable rotation of the chart by touch
         mChart.setRotationAngle(0);
         mChart.setRotationEnabled(true);
-
-        //set a chart value selected listener
-        mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-
-            @Override
-            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                // display msg when value selected
-                if (e == null)
-                    return;
-
-                Toast.makeText(Conclusion.this,
-                        xData[e.getXIndex()] + " = " + e.getVal() + "%",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected() {
-
-            }
-        });
 
         Intent intent = getIntent();
 
@@ -305,7 +288,8 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                 try {
                     //initialiseren xvalue en yvalue van de piechart
                     ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-                    ArrayList<String> xVals = new ArrayList<String>();
+                    final ArrayList<String> xVals = new ArrayList<String>();
+
                         for(int i = 0; i < 5; i++) {
 
                             JSONObject methods = (JSONObject) response.get(i);
@@ -366,6 +350,74 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             // update pie chart
                             mChart.invalidate();
                         }
+
+
+                    //sharedpreferences voor het doorsturen van de naam
+                    SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    for (String s : xVals)
+                    {
+                        listString += s + "\t";
+                    }
+
+                    String naamString = xVals.get(0);
+                    String naamString2 = xVals.get(1);
+                    String naamString3 = xVals.get(2);
+                    String naamString4 = xVals.get(3);
+                    String naamString5 = xVals.get(4);
+
+                    editor.putString("barChartData", listString);
+//                    String testString = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + listString;
+//                    Log.d("test", testString);
+                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString);
+                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
+                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
+                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
+                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
+
+
+
+                    editor.apply();
+
+                    Log.d("Testen BarChart", "Array: " + listString);
+
+                    //set a chart value selected listener
+                    mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+
+                        @Override
+                        public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                            // display msg when value selected
+                            if (e == null)
+                                return;
+
+                            //zodra gebruiker op chart drukt, open barcharactivity voor dieper inzicht
+                            Intent i = new Intent(Conclusion.this, BarchartActivity.class);
+
+                            Toast.makeText(Conclusion.this,
+                                    xData[e.getXIndex()] + " = " + e.getVal() + "%",
+                                    Toast.LENGTH_SHORT).show();
+
+
+                            if(dataSetIndex == 0){
+                                Toast.makeText(Conclusion.this, "Dit is een test", Toast.LENGTH_LONG).show();
+                            }
+                            if(dataSetIndex == 1){
+                                Toast.makeText(Conclusion.this, "Test 2", Toast.LENGTH_LONG).show();
+                            }
+                            Log.d("Wat is dit", "Test" + Integer.toString(dataSetIndex));
+
+                            Log.d("Testen van xData", xData[e.getXIndex()]);
+
+                            startActivity(i);
+                        }
+
+                        @Override
+                        public void onNothingSelected() {
+
+                        }
+                    });
+
             } catch(JSONException e){
                 // JSON error handlen
                 e.printStackTrace();
@@ -394,7 +446,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
     }
 
-
     public void filteren(View v){
         SharedPreferences sharedPreferences = getSharedPreferences("filterdata", Context.MODE_PRIVATE);
 
@@ -402,7 +453,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
         editor.putString("filterdata", jsendfilter.toString());
 
-        editor.commit();
+        editor.apply();
 
         Toast.makeText(this, "Opslaan slidersdata test", Toast.LENGTH_LONG).show();
 

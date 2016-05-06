@@ -36,23 +36,29 @@ public class BarchartActivity extends AppCompatActivity {
         entriesTP.add(new BarEntry(12f, 3));
         entriesTP.add(new BarEntry(18f, 4));
         entriesTP.add(new BarEntry(9f, 5));
+        entriesTP.add(new BarEntry(6f, 6));
+        entriesTP.add(new BarEntry(12f, 7));
+        entriesTP.add(new BarEntry(18f, 8));
+        entriesTP.add(new BarEntry(9f, 9));
 
-        BarDataSet datasetTP = new BarDataSet(entriesTP, "# of Calls");
+        BarDataSet datasetTP = new BarDataSet(entriesTP, "Methode richt zich op deze project typen");
 
         ArrayList<String> labelsTP = new ArrayList<String>();
-        labelsTP.add("January");
-        labelsTP.add("February");
-        labelsTP.add("March");
-        labelsTP.add("April");
-        labelsTP.add("May");
-        labelsTP.add("June");
+        labelsTP.add("Commercieel");
+        labelsTP.add("Data Warehouse");
+        labelsTP.add("Emergency release");
+        labelsTP.add("Integratie");
+        labelsTP.add("OO ontwikkeling");
+        labelsTP.add("Procedureel");
+        labelsTP.add("Onderhoud");
+        labelsTP.add("Outsourced");
+        labelsTP.add("Uitfasering");
+        labelsTP.add("Bedrijfs-kritisch");
 
         BarData dataTP = new BarData(labelsTP, datasetTP);
-        datasetTP.setColors(ColorTemplate.COLORFUL_COLORS);
+        datasetTP.setColors(ColorTemplate.JOYFUL_COLORS);
         barChartPT.setData(dataTP);
         barChartPT.animateY(5000);
-
-
 
         // chart ontwikkelstrategie
 
@@ -67,26 +73,23 @@ public class BarchartActivity extends AppCompatActivity {
         entriesOS.add(new BarEntry(12f, 3));
         entriesOS.add(new BarEntry(18f, 4));
         entriesOS.add(new BarEntry(9f, 5));
+        entriesOS.add(new BarEntry(9f, 6));
 
-        BarDataSet datasetOS = new BarDataSet(entriesOS, "# of Calls");
+        BarDataSet datasetOS = new BarDataSet(entriesOS, "Methode richt zich op deze strategieën");
 
         ArrayList<String> labelsOS = new ArrayList<String>();
-        labelsOS.add("January");
-        labelsOS.add("February");
-        labelsOS.add("March");
-        labelsOS.add("April");
-        labelsOS.add("May");
-        labelsOS.add("June");
+        labelsOS.add("Code and Fix");
+        labelsOS.add("Waterval");
+        labelsOS.add("Agile");
+        labelsOS.add("Spiraal");
+        labelsOS.add("Extreme Prog.");
+        labelsOS.add("Prototyping");
+        labelsOS.add("Rapid App Design");
 
         BarData dataOS = new BarData(labelsOS, datasetOS);
-        datasetOS.setColors(ColorTemplate.COLORFUL_COLORS);
+        datasetOS.setColors(ColorTemplate.JOYFUL_COLORS);
         barChartOS.setData(dataOS);
         barChartOS.animateY(5000);
-
-
-
-
-
 
         // chart proces activiteiten
         BarChart barChartPA = (BarChart) findViewById(R.id.chartactivity);
@@ -100,24 +103,29 @@ public class BarchartActivity extends AppCompatActivity {
         entriesPA.add(new BarEntry(12f, 3));
         entriesPA.add(new BarEntry(18f, 4));
         entriesPA.add(new BarEntry(9f, 5));
+        entriesPA.add(new BarEntry(6f, 6));
+        entriesPA.add(new BarEntry(12f, 7));
+        entriesPA.add(new BarEntry(18f, 8));
+        entriesPA.add(new BarEntry(9f, 9));
 
-        BarDataSet datasetPA = new BarDataSet(entriesPA, "# of Calls");
+        BarDataSet datasetPA = new BarDataSet(entriesPA, "Methode richt zich op deze activiteiten");
 
         ArrayList<String> labelsPA = new ArrayList<String>();
-        labelsPA.add("January");
-        labelsPA.add("February");
-        labelsPA.add("March");
-        labelsPA.add("April");
-        labelsPA.add("May");
-        labelsPA.add("June");
+        labelsPA.add("Req. definitie");
+        labelsPA.add("Project afbakening");
+        labelsPA.add("Detail ontwerp");
+        labelsPA.add("Req. specificeren");
+        labelsPA.add("Ontwikkelen");
+        labelsPA.add("Integratie");
+        labelsPA.add("Installatie");
+        labelsPA.add("Testen");
+        labelsPA.add("Training");
+        labelsPA.add("Implementatie");
 
         BarData dataPA = new BarData(labelsPA, datasetPA);
-        datasetPA.setColors(ColorTemplate.COLORFUL_COLORS);
-        barChartPA.setData(dataOS);
+        datasetPA.setColors(ColorTemplate.JOYFUL_COLORS);
+        barChartPA.setData(dataPA);
         barChartPA.animateY(5000);
-
-
-
 
         /// chart CMM / CMMI
         BarChart barChartCM = (BarChart) findViewById(R.id.chartcmmLevel);
@@ -130,24 +138,19 @@ public class BarchartActivity extends AppCompatActivity {
         entriesCM.add(new BarEntry(6f, 2));
         entriesCM.add(new BarEntry(12f, 3));
         entriesCM.add(new BarEntry(18f, 4));
-        entriesCM.add(new BarEntry(9f, 5));
 
-        BarDataSet datasetCM = new BarDataSet(entriesCM, "# of Calls");
+        BarDataSet datasetCM = new BarDataSet(entriesCM, "Methode wordt veel gebruikt met deze CMMI levels");
 
         ArrayList<String> labelsCM = new ArrayList<String>();
-        labelsCM.add("January");
-        labelsCM.add("February");
-        labelsCM.add("March");
-        labelsCM.add("April");
-        labelsCM.add("May");
-        labelsCM.add("June");
+        labelsCM.add("Level 1");
+        labelsCM.add("Level 2");
+        labelsCM.add("Level 3");
+        labelsCM.add("Level 4");
+        labelsCM.add("Level 5");
 
         BarData dataCM = new BarData(labelsCM, datasetCM);
-        datasetCM.setColors(ColorTemplate.COLORFUL_COLORS);
-        barChartCM.setData(dataOS);
+        datasetCM.setColors(ColorTemplate.JOYFUL_COLORS);
+        barChartCM.setData(dataCM);
         barChartCM.animateY(5000);
-
-
-
     }
 }
