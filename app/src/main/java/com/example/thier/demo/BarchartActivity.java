@@ -1,7 +1,12 @@
 package com.example.thier.demo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -18,12 +23,27 @@ import java.util.ArrayList;
 
 public class BarchartActivity extends AppCompatActivity {
 
+    public static final String DEFAULT = "N/A";
 
     // barchart ProjectType
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barchart);
+
+        Intent x = getIntent();
+        SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + DEFAULT);
+
+        if(name.equals(DEFAULT)){
+            Toast.makeText(this, "No data was found", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_LONG).show();
+        }
+
+        Log.d("SHAREDPREFERENCES", name);
+        //Log.d("SHAREDPREFERENCES2", name2);
 
         BarChart barChartPT = (BarChart) findViewById(R.id.chartProjectType);
 
