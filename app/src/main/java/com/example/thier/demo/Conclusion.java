@@ -272,8 +272,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
     }
 
-
-
+    //json array request voor ophalen en doorsturen data + vullen piechart
     private void makeJsonArrayRequest() {
 
         showpDialog();
@@ -351,67 +350,59 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             mChart.invalidate();
                         }
 
-
-                    //sharedpreferences voor het doorsturen van de naam
-                    SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    for (String s : xVals)
-                    {
-                        listString += s + "\t";
-                    }
-
-                    String naamString = xVals.get(0);
-                    String naamString2 = xVals.get(1);
-                    String naamString3 = xVals.get(2);
-                    String naamString4 = xVals.get(3);
-                    String naamString5 = xVals.get(4);
-
-                    editor.putString("barChartData", listString);
-//                    String testString = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + listString;
-//                    Log.d("test", testString);
-                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString);
-                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
-                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
-                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
-                    Log.d("test2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
-
-
-
-                    editor.apply();
-
-                    Log.d("Testen BarChart", "Array: " + listString);
-
                     //set a chart value selected listener
                     mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 
                         @Override
                         public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
                             // display msg when value selected
-                            if (e == null)
+                            if (e == null){
                                 return;
-
+                            }
                             //zodra gebruiker op chart drukt, open barcharactivity voor dieper inzicht
-                            Intent i = new Intent(Conclusion.this, BarchartActivity.class);
+                            Intent x = new Intent(Conclusion.this, BarchartActivity.class);
 
-                            Toast.makeText(Conclusion.this,
-                                    xData[e.getXIndex()] + " = " + e.getVal() + "%",
-                                    Toast.LENGTH_SHORT).show();
+                            //sharedpreferences voor het doorsturen van de naam
+                            SharedPreferences mSharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editormShared = mSharedPreferences.edit();
 
+                            //xValues ophalen om als String door te kunnen sturen bij de if/else statements
+                            String naamString = xVals.get(0);
+                            String naamString2 = xVals.get(1);
+                            String naamString3 = xVals.get(2);
+                            String naamString4 = xVals.get(3);
+                            String naamString5 = xVals.get(4);
 
-                            if(dataSetIndex == 0){
-                                Toast.makeText(Conclusion.this, "Dit is een test", Toast.LENGTH_LONG).show();
+                            //index krijgen van waar de gebruiker op klikt, en deze doorsturen naar BarCharActivity
+                            if(e.getXIndex() == 0){
+                                editormShared.putString("jsondata", naamString);
+                                Log.d("testing1","http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString);
+                               // editormShared.apply();
+                                //editor.apply();
                             }
-                            if(dataSetIndex == 1){
-                                Toast.makeText(Conclusion.this, "Test 2", Toast.LENGTH_LONG).show();
+                            if(e.getXIndex() == 1){
+                                Log.d("testing2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
+                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
+                                //editormShared.apply();
                             }
-                            Log.d("Wat is dit", "Test" + Integer.toString(dataSetIndex));
-
-                            Log.d("Testen van xData", xData[e.getXIndex()]);
-
-                            startActivity(i);
+                            if(e.getXIndex() == 2){
+                                Log.d("testing3", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
+                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
+                                //editormShared.apply();
+                            }
+                            if(e.getXIndex() == 3){
+                                Log.d("testing4", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
+                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
+                                //editormShared.apply();
+                            }
+                            if(e.getXIndex() == 4){
+                                Log.d("testing5", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
+                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
+                                //editormShared.apply();
+                            }
+                            editormShared.apply();
+                            startActivity(x);
                         }
-
                         @Override
                         public void onNothingSelected() {
 
@@ -423,9 +414,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
-
             hidepDialog();
-
         }
     }, new Response.ErrorListener() {
             @Override
