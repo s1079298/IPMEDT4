@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -59,6 +60,8 @@ public class BarchartActivity extends AppCompatActivity {
     private static final String TAG_CMM = "cmmLevel";
     private static final String TAG_SLIDERS = "sliders";
     private static final String TAG_ENDSCORE = "endscore";
+
+    private String jsonResponse;
 
     private ArrayList<String> labelsPT = new ArrayList<String>();
 
@@ -220,126 +223,120 @@ public class BarchartActivity extends AppCompatActivity {
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
-        makeJsonArrayRequest();
+        makeJsonObjectRequest();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
 
 
     }
 
-    //json array request voor ophalen en doorsturen data + vullen piechart
-    private void makeJsonArrayRequest() {
+    private void makeJsonObjectRequest() {
 
+        showpDialog();
         SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
 
         //ophalen jsonurl voor ophalen data
         String jsondata = sharedPreferences.getString("jsondata", DEFAULT);
         String jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + jsondata;
-        Log.d("Testen verzenden", jsondataURL);
+        Log.d("Testen jsonObject", jsondataURL);
 
-        //toast text om te kijken of het lukt om data op te halen
-        if(jsondataURL.equals(DEFAULT)){
-            Toast.makeText(this, "No data was found", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_LONG).show();
-        }
-
-        showpDialog();
-
-        JsonArrayRequest req = new JsonArrayRequest(jsondataURL,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET,
+                jsondataURL, new Response.Listener<JSONObject>() {
 
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
 
                 try {
-                    //initialiseren xvalue en yvalue van de piechart
-                    ArrayList<BarEntry> entriesPT = new ArrayList<>();
+                    // Parsing json object response
+                    // response will be a json object
+                    String description = response.getString(TAG_DESCRIPTION);
+                    JSONArray projectType = new JSONArray();
+                    projectType = response.getJSONArray(TAG_PT);
+//                    String projectType = response.getString(TAG_PT);
+                    String strategy = response.getString(TAG_STRATEGY);
+                    String activity = response.getString(TAG_ACTIVITY);
+                    String cmmLevel = response.getString(TAG_CMM);
+                    String sliders = response.getString(TAG_SLIDERS);
+                    jsonResponse = description;
 
-                    for(int i = 0; i < response.length(); i++) {
-//                        JSONObject jsonObject = response.getJSONObject(i);
-                        JSONArray jsonArray = response.getJSONArray(i);
-                        //JSONArray jArray = jsonObject.getJSONArray("name");
+                    TextView descrip = (TextView) findViewById(R.id.textViewdescription);
+                    descrip.setText(jsonResponse);
 
-                        labelsPT.add(jsonArray.toString());
-                        Log.d("Test voor BarChart", jsonArray.toString());
-//
-//                        //adden van strings to JSONObject methods
-//                        String name = methods.getString(TAG_NAME);
-//                        String description = methods.getString(TAG_DESCRIPTION);
-//                        String projectType = methods.getString(TAG_PT);
-//                        String strategy = methods.getString(TAG_STRATEGY);
-//                        String activity = methods.getString(TAG_ACTIVITY);
-//                        String cmmLevel = methods.getString(TAG_CMM);
-//                        String sliders = methods.getString(TAG_SLIDERS);
-//                        String endscore = methods.getString(TAG_ENDSCORE);
-//                        Log.d("Dit komt eruit", "\n" + name + "\t\t" + description + "\t\t\t"
-//                                + projectType + "\t\t\t\t" + strategy + "\t\t\t\t" + activity
-//                                + "\t\t\t\t" + cmmLevel + "\t\t\t\t" + sliders + "\t\t\t\t" + "\n");
+                    Log.d("Testen projecttype", projectType.toString());
+                    Log.d("Testen strategy", strategy);
+                    Log.d("Testen activity", activity);
+                    Log.d("Testen cmmLevel", cmmLevel);
+                    Log.d("Testen sliders", sliders);
 
-//                        //endscore omzetten naar float
-//                        float testfloat = Float.parseFloat(projectType);
-//                        Log.d("Testfloat BARCHART", projectType);
-//
-//                        //yvalue van barchart
-//                        entriesPT.add(new BarEntry(testfloat, i));
-//
-//                        //aanmaken BarChart voor Projecttype
-//                        BarDataSet datasetTP = new BarDataSet(entriesPT, "Methode richt zich op deze project typen");
-//                        labelsPT.add("Commercieel");
-//                        labelsPT.add("Data Warehouse");
-//                        labelsPT.add("Emergency release");
-//                        labelsPT.add("Integratie");
-//                        labelsPT.add("OO ontwikkeling");
-//                        labelsPT.add("Procedureel");
-//                        labelsPT.add("Onderhoud");
-//                        labelsPT.add("Outsourced");
-//                        labelsPT.add("Uitfasering");
-//                        labelsPT.add("Bedrijfs-kritisch");
-//
-//                        BarData dataPT = new BarData(labelsPT, datasetTP);
-//                        datasetTP.setColors(ColorTemplate.JOYFUL_COLORS);
-//
-//                        //creëeren van barchart data
-//                        BarDataSet dataSetPT = new BarDataSet(entriesPT, "Methode richt zich op deze project typen");
-//                        dataSetPT.setColors(ColorTemplate.JOYFUL_COLORS);
-//
-//                        //piechart setdata
-//                        barChartPT.setData(dataPT);
-//                        barChartPT.animateY(5000);
-//
-//                        // undo all highlights
-//                        barChartPT.highlightValues(null);
-//                        barChartPT.setDescription(null);
-//
-//                        // update pie chart
-//                        barChartPT.invalidate();
-                    }
+                    projectType.get(0);
+                    Log.d("Testing getting", projectType.get(0).toString());
 
-                    //set a chart value selected listener
-                    barChartPT.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                    BarChart barChartPT = (BarChart) findViewById(R.id.chartProjectType);
 
-                        @Override
-                        public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                            // display msg when value selected
-                            if (e == null)
-                                return;
-                        }
-                        @Override
-                        public void onNothingSelected() {
-                        }
-                    });
+                    //parsing double to ints, gezien hij anders niet de waarden in barchart in kan laden
+                    double DPT0 = (projectType.getDouble(0) * 100 );
+                    int PT0 = (int)DPT0;
+                    double DPT1 = (projectType.getDouble(1) * 100 );
+                    int PT1 = (int)DPT1;
+                    double DPT2 = (projectType.getDouble(2) * 100 );
+                    int PT2 = (int)DPT2;
+                    double DPT3 = (projectType.getDouble(3) * 100 );
+                    int PT3 = (int)DPT3;
+                    double DPT4 = (projectType.getDouble(4) * 100 );
+                    int PT4 = (int)DPT4;
+                    double DPT5 = (projectType.getDouble(5) * 100 );
+                    int PT5 = (int)DPT5;
+                    double DPT6 = (projectType.getDouble(6) * 100 );
+                    int PT6 = (int)DPT6;
+                    double DPT7 = (projectType.getDouble(7) * 100 );
+                    int PT7 = (int)DPT7;
+                    double DPT8 = (projectType.getDouble(8) * 100 );
+                    int PT8 = (int)DPT8;
+                    double DPT9 = (projectType.getDouble(9) * 100 );
+                    int PT9 = (int)DPT9;
 
-                } catch(JSONException e){
-                    // JSON error handlen
+                    ArrayList<BarEntry> entriesPT = new ArrayList<BarEntry>();
+                    entriesPT.add(new BarEntry(PT0, 0));
+                    entriesPT.add(new BarEntry(PT1, 1));
+                    entriesPT.add(new BarEntry(PT2, 2));
+                    entriesPT.add(new BarEntry(PT3, 3));
+                    entriesPT.add(new BarEntry(PT4, 4));
+                    entriesPT.add(new BarEntry(PT5, 5));
+                    entriesPT.add(new BarEntry(PT6, 6));
+                    entriesPT.add(new BarEntry(PT7, 7));
+                    entriesPT.add(new BarEntry(PT8, 8));
+                    entriesPT.add(new BarEntry(PT9, 9));
+
+                    BarDataSet datasetTP = new BarDataSet(entriesPT, "Methode richt zich op deze project typen");
+
+                    ArrayList<String> labelsPT = new ArrayList<String>();
+                    labelsPT.add("Commercieel");
+                    labelsPT.add("Data Warehouse");
+                    labelsPT.add("Emergency release");
+                    labelsPT.add("Integratie");
+                    labelsPT.add("OO ontwikkeling");
+                    labelsPT.add("Procedureel");
+                    labelsPT.add("Onderhoud");
+                    labelsPT.add("Outsourced");
+                    labelsPT.add("Uitfasering");
+                    labelsPT.add("Bedrijfs-kritisch");
+
+                    BarData dataTP = new BarData(labelsPT, datasetTP);
+                    datasetTP.setColors(ColorTemplate.JOYFUL_COLORS);
+                    barChartPT.setData(dataTP);
+                    barChartPT.animateY(5000);
+
+                } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
                 hidepDialog();
             }
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "Error: " + error.getMessage());
@@ -348,12 +345,11 @@ public class BarchartActivity extends AppCompatActivity {
                 hidepDialog();
             }
         });
-        Log.d("opsturen json", "opsturen");
 
-        labelsPT = new ArrayList<>();
-        //aan queue toevoegen
+        // Adding request to request queue
         JSONadapter.getInstance().addToRequestQueue(req);
     }
+
 
     private void showpDialog() {
         if (!pDialog.isShowing())
