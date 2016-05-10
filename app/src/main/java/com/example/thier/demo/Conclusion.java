@@ -68,7 +68,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
     private RelativeLayout mainLayout;
     private PieChart mChart;
-    private String[] xData = {"", "", "", "", ""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,8 +299,12 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             //xvalue van piechart
                                 xVals.add(method);
 
+                            Log.d("xVals Conclusion", method);
+
                             //endscore omzetten naar float
                             float testfloat = Float.parseFloat(endscore);
+
+                            Log.d("Endscore Conclusion", endscore);
 
                             //yvalue van piechart
                                 yVals1.add(new Entry(testfloat, i));
@@ -382,22 +385,22 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             }
                             if(e.getXIndex() == 1){
                                 Log.d("testing2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
-                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
+                                editormShared.putString("jsondata", naamString2);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 2){
                                 Log.d("testing3", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
-                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
+                                editormShared.putString("jsondata", naamString3);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 3){
                                 Log.d("testing4", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
-                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
+                                editormShared.putString("jsondata", naamString4);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 4){
                                 Log.d("testing5", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
-                                editormShared.putString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
+                                editormShared.putString("jsondata", naamString5);
                                 //editormShared.apply();
                             }
                             editormShared.apply();
