@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity
                     Intent myIntent = new Intent(MainActivity.this,
                             Conclusion.class);
 
+                    myIntent.putExtra("FROM_ACTIVITY", "D");
+
                     startActivity(myIntent);
                 }
             });

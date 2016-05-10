@@ -230,15 +230,32 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         Intent intent = getIntent();
         String previousActivity = intent.getStringExtra("FROM_ACTIVITY");
         //als previous activity van Weight afkomt, stuur de goede jsend string door voor ophalen data
-        if (previousActivity.equals("A")){
+        if(previousActivity.equals("A")){
             jsend = jsendarray.toString();
+            SharedPreferences sharedprefA = getSharedPreferences("jsondataA", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedprefA.edit();
+            edit.putString("jsendA", jsend);
+
             Log.d("ACTIVITY A JSEND", jsend);
         }
         //als previous activity van Multispinner afkomt, stuur goede jsend string door voor ophalen data
-        if (previousActivity.equals("B")){
+        if(previousActivity.equals("B")){
             SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
             jsend = msharedpref.getString("jsend", DEFAULT);
             Log.d("ACTIVITY B JSEND", jsend);
+        }
+
+        // TO_DO, werkt alleen met de laatste filters
+        //als previous activity van MainActivity afkomt, zorg voor de goede data van sharedpref
+        if(previousActivity.equals("D")){
+            if(previousActivity.equals("A")){
+                SharedPreferences sharedprefA = getSharedPreferences("jsondataA", Context.MODE_PRIVATE);
+                jsend = sharedprefA.getString("jsendA", DEFAULT);
+            } else {
+                SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
+                jsend = msharedpref.getString("jsend", DEFAULT);
+            }
+            Log.d("ACTIVITY C JSEND", jsend);
         }
 
         Log.d("DOORGESTUURD JSONREQ", jsend);
