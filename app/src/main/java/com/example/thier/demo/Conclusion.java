@@ -344,27 +344,20 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             //index krijgen van waar de gebruiker op klikt, en deze doorsturen naar BarCharActivity
                             if(e.getXIndex() == 0){
                                 editormShared.putString("jsondata", naamString);
-                                Log.d("testing1","http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString);
-                               // editormShared.apply();
-                                //editor.apply();
                             }
                             if(e.getXIndex() == 1){
-                                Log.d("testing2", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString2);
                                 editormShared.putString("jsondata", naamString2);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 2){
-                                Log.d("testing3", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString3);
                                 editormShared.putString("jsondata", naamString3);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 3){
-                                Log.d("testing4", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString4);
                                 editormShared.putString("jsondata", naamString4);
                                 //editormShared.apply();
                             }
                             if(e.getXIndex() == 4){
-                                Log.d("testing5", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + naamString5);
                                 editormShared.putString("jsondata", naamString5);
                                 //editormShared.apply();
                             }

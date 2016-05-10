@@ -436,8 +436,6 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
         edit.putString("jsend", jsend);
         edit.apply();
 
-        Log.d("Dit is de string", jsend);
-
 		//start intent
 		startActivity(i);
 	}

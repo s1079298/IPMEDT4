@@ -51,6 +51,7 @@ public class BarchartActivity extends AppCompatActivity {
     public static final String DEFAULT = "N/A";
     RequestQueue requestQueue;
     private static String TAG = BarchartActivity.class.getSimpleName();
+    String jsondataURL;
 
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_PT = "projectType";
@@ -94,7 +95,16 @@ public class BarchartActivity extends AppCompatActivity {
         //ophalen jsonurl voor ophalen data vanuit sharedpref
         SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
         String jsondata = sharedPreferences.getString("jsondata", DEFAULT);
-        String jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + jsondata;
+
+        //if Code and Fix of Crystal Clear, ervoor zorgen dat spaties niet meegerekend worden
+        //aangezien hij anders de link afbreekt
+        if(jsondata.equals("Code and Fix")){
+            jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=Code%20and%20Fix";
+        } else if(jsondata.equals("Crystal Clear")){
+            jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=Crystal%20Clear";
+        } else {
+            jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + jsondata;
+        }
         Log.d("Testen jsonObject", jsondataURL);
 
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET,
