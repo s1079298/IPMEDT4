@@ -60,7 +60,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     private static final String TAG_METHOD = "method";
     private static final String TAG_ENDSCORE = "endscore";
 
-    //jsonarray voor het verzenden van de data
+    //JSonarray voor het verzenden van de data
     JSONArray jsendarray = new JSONArray();
     JSONArray jsendfilterschalen = new JSONArray();
     JSONArray jsendfilterschaalgewicht = new JSONArray();
@@ -84,18 +84,18 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
         mChart = new PieChart(this);
 
-        // add pie chart to main layout
+        // Piechart aan mainlayout toevoegen
         mainLayout.addView(mChart);
 
-        // configure pie chart
+        // Piechart configureren
         mChart.setUsePercentValues(true);
         mChart.setDescription("Methodes");
 
-        // enable hole and configure
+        // Gat in piechart aanzetten en radius daarvan
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleRadius(45);
 
-        // enable rotation of the chart by touch
+        // Piechart kan door aanraking gedraait worden
         mChart.setRotationAngle(0);
         mChart.setRotationEnabled(true);
 
@@ -103,7 +103,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
-        // customize legends
+        // Legenda's costumizen
         Legend l = mChart.getLegend();
         l.setPosition(LegendPosition.BELOW_CHART_CENTER);
         l.setXEntrySpace(7);
