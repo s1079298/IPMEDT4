@@ -52,8 +52,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     RequestQueue requestQueue;
 
     private static String TAG = Conclusion.class.getSimpleName();
-    String listString = "";
-    StringBuilder sb = new StringBuilder();
 
     //Progress Dialog
     private ProgressDialog pDialog;
@@ -90,8 +88,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         // enable rotation of the chart by touch
         mChart.setRotationAngle(0);
         mChart.setRotationEnabled(true);
-
-        Intent intent = getIntent();
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
@@ -297,7 +293,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             String endscore = methods.getString(TAG_ENDSCORE);
 
                             //xvalue van piechart
-                                xVals.add(method);
+                            xVals.add(method);
 
                             Log.d("xVals Conclusion", method);
 

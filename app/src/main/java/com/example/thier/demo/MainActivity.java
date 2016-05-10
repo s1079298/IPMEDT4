@@ -19,8 +19,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class MainActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
-        //test upload nieuwe branch Joost
-        //oude branch gaf errors. verwijderd nieuwe aangemaakt
         Button button;
         Button button1;
 
@@ -37,9 +35,9 @@ public class MainActivity extends AppCompatActivity
             button1.setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
 
-                    // Start NewActivity.class
+                    // Start Conclusion.class
                     Intent myIntent = new Intent(MainActivity.this,
-                            BarchartActivity.class);
+                            Conclusion.class);
 
                     startActivity(myIntent);
                 }

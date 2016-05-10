@@ -52,22 +52,12 @@ public class BarchartActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     private static String TAG = BarchartActivity.class.getSimpleName();
 
-    private static final String TAG_NAME = "name";
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_PT = "projectType";
     private static final String TAG_STRATEGY = "strategy";
     private static final String TAG_ACTIVITY = "activity";
     private static final String TAG_CMM = "cmmLevel";
     private static final String TAG_SLIDERS = "sliders";
-    private static final String TAG_ENDSCORE = "endscore";
-
-    private String jsonResponse;
-
-    private ArrayList<String> labelsPT = new ArrayList<String>();
-
-    JSONArray jsend = new JSONArray();
-    private LinearLayout barLayout;
-    private BarChart barChartPT;
 
     //Progress Dialog
     private ProgressDialog pDialog;
@@ -75,16 +65,10 @@ public class BarchartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        barLayout = (LinearLayout) findViewById(R.id.barLayout);
         setContentView(R.layout.activity_barchart);
 
-        barChartPT = new BarChart(this);
-
-        Intent x = getIntent();
         //ophalen sharedpref van conclusion klasse
         SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
-        //ophalen jsonurl voor ophalen data
-//        String jsondata = sharedPreferences.getString("jsondata", "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + DEFAULT);
 
         //titel voor gebruik in barchart activity
         String titel = sharedPreferences.getString("jsondata", DEFAULT);
@@ -93,149 +77,22 @@ public class BarchartActivity extends AppCompatActivity {
         TextView textName = (TextView) findViewById(R.id.titelViewPT);
         textName.setText(titel);
 
-//        //aanmaken BarChart voor Projecttype
-//        BarChart barChartPT = (BarChart) findViewById(R.id.chartProjectType);
-//
-//        ArrayList<BarEntry> entriesTP = new ArrayList<>();
-//        entriesTP.add(new BarEntry(4f, 0));
-//        entriesTP.add(new BarEntry(8f, 1));
-//        entriesTP.add(new BarEntry(6f, 2));
-//        entriesTP.add(new BarEntry(12f, 3));
-//        entriesTP.add(new BarEntry(18f, 4));
-//        entriesTP.add(new BarEntry(9f, 5));
-//        entriesTP.add(new BarEntry(6f, 6));
-//        entriesTP.add(new BarEntry(12f, 7));
-//        entriesTP.add(new BarEntry(18f, 8));
-//        entriesTP.add(new BarEntry(9f, 9));
-//
-//        BarDataSet datasetTP = new BarDataSet(entriesTP, "Methode richt zich op deze project typen");
-//
-//        ArrayList<String> labelsTP = new ArrayList<String>();
-//        labelsTP.add("Commercieel");
-//        labelsTP.add("Data Warehouse");
-//        labelsTP.add("Emergency release");
-//        labelsTP.add("Integratie");
-//        labelsTP.add("OO ontwikkeling");
-//        labelsTP.add("Procedureel");
-//        labelsTP.add("Onderhoud");
-//        labelsTP.add("Outsourced");
-//        labelsTP.add("Uitfasering");
-//        labelsTP.add("Bedrijfs-kritisch");
-//
-//        BarData dataTP = new BarData(labelsTP, datasetTP);
-//        datasetTP.setColors(ColorTemplate.JOYFUL_COLORS);
-//        barChartPT.setData(dataTP);
-//        barChartPT.animateY(5000);
-
-        // chart ontwikkelstrategie
-
-        BarChart barChartOS = (BarChart) findViewById(R.id.chartstrategy);
-
-        ArrayList<BarEntry> entriesOS = new ArrayList<>();
-        entriesOS.add(new BarEntry(4f, 0));
-        entriesOS.add(new BarEntry(8f, 1));
-        entriesOS.add(new BarEntry(6f, 2));
-        entriesOS.add(new BarEntry(12f, 3));
-        entriesOS.add(new BarEntry(18f, 4));
-        entriesOS.add(new BarEntry(9f, 5));
-        entriesOS.add(new BarEntry(9f, 6));
-
-        BarDataSet datasetOS = new BarDataSet(entriesOS, "Methode richt zich op deze strategieën");
-
-        ArrayList<String> labelsOS = new ArrayList<String>();
-        labelsOS.add("Code and Fix");
-        labelsOS.add("Waterval");
-        labelsOS.add("Agile");
-        labelsOS.add("Spiraal");
-        labelsOS.add("Extreme Prog.");
-        labelsOS.add("Prototyping");
-        labelsOS.add("Rapid App Design");
-
-        BarData dataOS = new BarData(labelsOS, datasetOS);
-        datasetOS.setColors(ColorTemplate.JOYFUL_COLORS);
-        barChartOS.setData(dataOS);
-        barChartOS.animateY(5000);
-
-        // chart proces activiteiten
-        BarChart barChartPA = (BarChart) findViewById(R.id.chartactivity);
-
-        ArrayList<BarEntry> entriesPA = new ArrayList<>();
-        entriesPA.add(new BarEntry(4f, 0));
-        entriesPA.add(new BarEntry(8f, 1));
-        entriesPA.add(new BarEntry(6f, 2));
-        entriesPA.add(new BarEntry(12f, 3));
-        entriesPA.add(new BarEntry(18f, 4));
-        entriesPA.add(new BarEntry(9f, 5));
-        entriesPA.add(new BarEntry(6f, 6));
-        entriesPA.add(new BarEntry(12f, 7));
-        entriesPA.add(new BarEntry(18f, 8));
-        entriesPA.add(new BarEntry(9f, 9));
-
-        BarDataSet datasetPA = new BarDataSet(entriesPA, "Methode richt zich op deze activiteiten");
-
-        ArrayList<String> labelsPA = new ArrayList<String>();
-        labelsPA.add("Req. definitie");
-        labelsPA.add("Project afbakening");
-        labelsPA.add("Detail ontwerp");
-        labelsPA.add("Req. specificeren");
-        labelsPA.add("Ontwikkelen");
-        labelsPA.add("Integratie");
-        labelsPA.add("Installatie");
-        labelsPA.add("Testen");
-        labelsPA.add("Training");
-        labelsPA.add("Implementatie");
-
-        BarData dataPA = new BarData(labelsPA, datasetPA);
-        datasetPA.setColors(ColorTemplate.JOYFUL_COLORS);
-        barChartPA.setData(dataPA);
-        barChartPA.animateY(5000);
-
-        /// chart CMM / CMMI
-        BarChart barChartCM = (BarChart) findViewById(R.id.chartcmmLevel);
-
-        ArrayList<BarEntry> entriesCM = new ArrayList<>();
-        entriesCM.add(new BarEntry(4f, 0));
-        entriesCM.add(new BarEntry(8f, 1));
-        entriesCM.add(new BarEntry(6f, 2));
-        entriesCM.add(new BarEntry(12f, 3));
-        entriesCM.add(new BarEntry(18f, 4));
-
-        BarDataSet datasetCM = new BarDataSet(entriesCM, "Methode wordt veel gebruikt met deze CMMI levels");
-
-        ArrayList<String> labelsCM = new ArrayList<String>();
-        labelsCM.add("Level 1");
-        labelsCM.add("Level 2");
-        labelsCM.add("Level 3");
-        labelsCM.add("Level 4");
-        labelsCM.add("Level 5");
-
-        BarData dataCM = new BarData(labelsCM, datasetCM);
-        datasetCM.setColors(ColorTemplate.JOYFUL_COLORS);
-        barChartCM.setData(dataCM);
-        barChartCM.animateY(5000);
-
-//        this.jsend.put(entriesTP);
-        this.jsend.put(entriesOS);
-        this.jsend.put(entriesPA);
-        this.jsend.put(entriesCM);
-
+        //progress dialog initialisatie
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
+        //methode aanroepen voor json request en volley gebruik
         makeJsonObjectRequest();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-
-
-
     }
 
+    //json object request voor inladen data
     private void makeJsonObjectRequest() {
 
         showpDialog();
+        //ophalen jsonurl voor ophalen data vanuit sharedpref
         SharedPreferences sharedPreferences = getSharedPreferences("barChartData", Context.MODE_PRIVATE);
-
-        //ophalen jsonurl voor ophalen data
         String jsondata = sharedPreferences.getString("jsondata", DEFAULT);
         String jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + jsondata;
         Log.d("Testen jsonObject", jsondataURL);
@@ -251,27 +108,19 @@ public class BarchartActivity extends AppCompatActivity {
                     // Parsing json object response
                     // response will be a json object
                     String description = response.getString(TAG_DESCRIPTION);
-                    JSONArray projectType = new JSONArray();
-                    projectType = response.getJSONArray(TAG_PT);
-//                    String projectType = response.getString(TAG_PT);
-                    String strategy = response.getString(TAG_STRATEGY);
-                    String activity = response.getString(TAG_ACTIVITY);
-                    String cmmLevel = response.getString(TAG_CMM);
-                    String sliders = response.getString(TAG_SLIDERS);
-                    jsonResponse = description;
 
+                    //inladen van description in textview
                     TextView descrip = (TextView) findViewById(R.id.textViewdescription);
-                    descrip.setText(jsonResponse);
+                    descrip.setText(description);
 
-                    Log.d("Testen projecttype", projectType.toString());
-                    Log.d("Testen strategy", strategy);
-                    Log.d("Testen activity", activity);
-                    Log.d("Testen cmmLevel", cmmLevel);
-                    Log.d("Testen sliders", sliders);
+                    //inladen van de JSONArrays voor de barcharts
+                    JSONArray projectType = response.getJSONArray(TAG_PT);
+                    JSONArray strategy = response.getJSONArray(TAG_STRATEGY);
+                    JSONArray activity = response.getJSONArray(TAG_ACTIVITY);
+                    JSONArray cmmLevel = response.getJSONArray(TAG_CMM);
+                    JSONArray sliders = response.getJSONArray(TAG_SLIDERS);
 
-                    projectType.get(0);
-                    Log.d("Testing getting", projectType.get(0).toString());
-
+                    //aanmaken van de project types barchart
                     BarChart barChartPT = (BarChart) findViewById(R.id.chartProjectType);
 
                     //parsing double to ints, gezien hij anders niet de waarden in barchart in kan laden
@@ -296,6 +145,7 @@ public class BarchartActivity extends AppCompatActivity {
                     double DPT9 = (projectType.getDouble(9) * 100 );
                     int PT9 = (int)DPT9;
 
+                    //entries voor project types barchart
                     ArrayList<BarEntry> entriesPT = new ArrayList<BarEntry>();
                     entriesPT.add(new BarEntry(PT0, 0));
                     entriesPT.add(new BarEntry(PT1, 1));
@@ -327,6 +177,148 @@ public class BarchartActivity extends AppCompatActivity {
                     barChartPT.setData(dataTP);
                     barChartPT.animateY(5000);
 
+                    //barchart ontwikkelstrategie
+                    BarChart barChartOS = (BarChart) findViewById(R.id.chartstrategy);
+
+                    //doubles omzetten naar ints voor gebruik in barchart
+                    double DOS0 = (strategy.getDouble(0) * 100 );
+                    int OS0 = (int)DOS0;
+                    double DOS1 = (strategy.getDouble(1) * 100 );
+                    int OS1 = (int)DOS1;
+                    double DOS2 = (strategy.getDouble(2) * 100 );
+                    int OS2 = (int)DOS2;
+                    double DOS3 = (strategy.getDouble(3) * 100 );
+                    int OS3 = (int)DOS3;
+                    double DOS4 = (strategy.getDouble(4) * 100 );
+                    int OS4 = (int)DOS4;
+                    double DOS5 = (strategy.getDouble(5) * 100 );
+                    int OS5 = (int)DOS5;
+                    double DOS6 = (strategy.getDouble(6) * 100 );
+                    int OS6 = (int)DOS6;
+
+                    //entries in de barchart voor ontwikkel strategieen
+                    ArrayList<BarEntry> entriesOS = new ArrayList<>();
+                    entriesOS.add(new BarEntry(OS0, 0));
+                    entriesOS.add(new BarEntry(OS1, 1));
+                    entriesOS.add(new BarEntry(OS2, 2));
+                    entriesOS.add(new BarEntry(OS3, 3));
+                    entriesOS.add(new BarEntry(OS4, 4));
+                    entriesOS.add(new BarEntry(OS5, 5));
+                    entriesOS.add(new BarEntry(OS6, 6));
+
+                    BarDataSet datasetOS = new BarDataSet(entriesOS, "Methode richt zich op deze strategieën");
+
+                    ArrayList<String> labelsOS = new ArrayList<String>();
+                    labelsOS.add("Code and Fix");
+                    labelsOS.add("Waterval");
+                    labelsOS.add("Agile");
+                    labelsOS.add("Spiraal");
+                    labelsOS.add("Extreme Prog.");
+                    labelsOS.add("Prototyping");
+                    labelsOS.add("Rapid App Design");
+
+                    BarData dataOS = new BarData(labelsOS, datasetOS);
+                    datasetOS.setColors(ColorTemplate.JOYFUL_COLORS);
+                    barChartOS.setData(dataOS);
+                    barChartOS.animateY(5000);
+
+                    // chart proces activiteiten
+                    BarChart barChartPA = (BarChart) findViewById(R.id.chartactivity);
+
+                    //doubles naar ints voor proces activiteiten
+                    double DPA0 = (activity.getDouble(0) * 100 );
+                    int PA0 = (int)DPA0;
+                    double DPA1 = (activity.getDouble(1) * 100 );
+                    int PA1 = (int)DPA1;
+                    double DPA2 = (activity.getDouble(2) * 100 );
+                    int PA2 = (int)DPA2;
+                    double DPA3 = (activity.getDouble(3) * 100 );
+                    int PA3 = (int)DPA3;
+                    double DPA4 = (activity.getDouble(4) * 100 );
+                    int PA4 = (int)DPA4;
+                    double DPA5 = (activity.getDouble(5) * 100 );
+                    int PA5 = (int)DPA5;
+                    double DPA6 = (activity.getDouble(6) * 100 );
+                    int PA6 = (int)DPA6;
+                    double DPA7 = (activity.getDouble(7) * 100 );
+                    int PA7 = (int)DPA7;
+                    double DPA8 = (activity.getDouble(8) * 100 );
+                    int PA8 = (int)DPA8;
+                    double DPA9 = (activity.getDouble(9) * 100 );
+                    int PA9 = (int)DPA9;
+
+                    //entries voor de proces activiteiten barchart
+                    ArrayList<BarEntry> entriesPA = new ArrayList<>();
+                    entriesPA.add(new BarEntry(PA0, 0));
+                    entriesPA.add(new BarEntry(PA1, 1));
+                    entriesPA.add(new BarEntry(PA2, 2));
+                    entriesPA.add(new BarEntry(PA3, 3));
+                    entriesPA.add(new BarEntry(PA4, 4));
+                    entriesPA.add(new BarEntry(PA5, 5));
+                    entriesPA.add(new BarEntry(PA6, 6));
+                    entriesPA.add(new BarEntry(PA7, 7));
+                    entriesPA.add(new BarEntry(PA8, 8));
+                    entriesPA.add(new BarEntry(PA9, 9));
+
+                    BarDataSet datasetPA = new BarDataSet(entriesPA, "Methode richt zich op deze activiteiten");
+
+                    //labels toevoegen voor proces activiteiten barchart
+                    ArrayList<String> labelsPA = new ArrayList<String>();
+                    labelsPA.add("Req. definitie");
+                    labelsPA.add("Project afbakening");
+                    labelsPA.add("Detail ontwerp");
+                    labelsPA.add("Req. specificeren");
+                    labelsPA.add("Ontwikkelen");
+                    labelsPA.add("Integratie");
+                    labelsPA.add("Installatie");
+                    labelsPA.add("Testen");
+                    labelsPA.add("Training");
+                    labelsPA.add("Implementatie");
+
+                    BarData dataPA = new BarData(labelsPA, datasetPA);
+                    datasetPA.setColors(ColorTemplate.JOYFUL_COLORS);
+                    barChartPA.setData(dataPA);
+                    barChartPA.animateY(5000);
+
+                    /// chart CMM / CMMI
+                    BarChart barChartCM = (BarChart) findViewById(R.id.chartcmmLevel);
+
+                    //double naar int voor cmmi levels barchart
+                    double DCM0 = (activity.getDouble(0) * 100 );
+                    int CM0 = (int)DCM0;
+                    double DCM1 = (activity.getDouble(1) * 100 );
+                    int CM1 = (int)DCM1;
+                    double DCM2 = (activity.getDouble(2) * 100 );
+                    int CM2 = (int)DCM2;
+                    double DCM3 = (activity.getDouble(3) * 100 );
+                    int CM3 = (int)DCM3;
+                    double DCM4 = (activity.getDouble(4) * 100 );
+                    int CM4 = (int)DCM4;
+
+                    //entries cmmi barchart
+                    ArrayList<BarEntry> entriesCM = new ArrayList<>();
+                    entriesCM.add(new BarEntry(CM0, 0));
+                    entriesCM.add(new BarEntry(CM1, 1));
+                    entriesCM.add(new BarEntry(CM2, 2));
+                    entriesCM.add(new BarEntry(CM3, 3));
+                    entriesCM.add(new BarEntry(CM4, 4));
+
+                    BarDataSet datasetCM = new BarDataSet(entriesCM, "Methode wordt veel gebruikt met deze CMMI levels");
+
+                    //add labels voor cmmi in barchart
+                    ArrayList<String> labelsCM = new ArrayList<String>();
+                    labelsCM.add("Level 1");
+                    labelsCM.add("Level 2");
+                    labelsCM.add("Level 3");
+                    labelsCM.add("Level 4");
+                    labelsCM.add("Level 5");
+
+                    //set data voor cmmi barchart
+                    BarData dataCM = new BarData(labelsCM, datasetCM);
+                    datasetCM.setColors(ColorTemplate.JOYFUL_COLORS);
+                    barChartCM.setData(dataCM);
+                    barChartCM.animateY(5000);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(),
@@ -341,7 +333,7 @@ public class BarchartActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                        "No data available", Toast.LENGTH_SHORT).show();
                 hidepDialog();
             }
         });
@@ -349,7 +341,6 @@ public class BarchartActivity extends AppCompatActivity {
         // Adding request to request queue
         JSONadapter.getInstance().addToRequestQueue(req);
     }
-
 
     private void showpDialog() {
         if (!pDialog.isShowing())
