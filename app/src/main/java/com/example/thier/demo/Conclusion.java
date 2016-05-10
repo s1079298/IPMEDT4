@@ -45,11 +45,11 @@ import java.util.Arrays;
  * Created by Wendy on 25-3-2016.
  */
 public class Conclusion extends AppCompatActivity implements OnClickListener {
-    Button button1;
-
     //url van json advise
     private String jsondata = "http://www.nieuwemaker.nl/madvise/index.php?view=JSON&action=advise";
     RequestQueue requestQueue;
+
+    final String DEFAULT = "N/A";
 
     private static String TAG = Conclusion.class.getSimpleName();
 
@@ -61,8 +61,18 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     private static final String TAG_ENDSCORE = "endscore";
 
     //jsonarray voor het verzenden van de data
-    JSONArray jsend = new JSONArray();
-    JSONArray jsendfilter = new JSONArray();
+    JSONArray jsendarray = new JSONArray();
+    JSONArray jsendfilterschalen = new JSONArray();
+    JSONArray jsendfilterschaalgewicht = new JSONArray();
+    String jsend;
+
+    JSONArray jproject = new JSONArray();
+    JSONArray jontwikkel = new JSONArray();
+    JSONArray jproces = new JSONArray();
+    JSONArray jcmmi = new JSONArray();
+    JSONArray jschalen = new JSONArray();
+    JSONArray jschaalgewicht = new JSONArray();
+    JSONArray jgewicht = new JSONArray();
 
     private RelativeLayout mainLayout;
     private PieChart mChart;
@@ -99,46 +109,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
 
-        //project typen filters ophalen
-        int value0 = getIntent().getIntExtra("value0", 0);
-        int value1 = getIntent().getIntExtra("value1", 0);
-        int value2 = getIntent().getIntExtra("value2", 0);
-        int value3 = getIntent().getIntExtra("value3", 0);
-        int value4 = getIntent().getIntExtra("value4", 0);
-        int value5 = getIntent().getIntExtra("value5", 0);
-        int value6 = getIntent().getIntExtra("value6", 0);
-        int value7 = getIntent().getIntExtra("value7", 0);
-        int value8 = getIntent().getIntExtra("value8", 0);
-        int value9 = getIntent().getIntExtra("value9", 0);
-
-        //ontwikkel strategie filters ophalen
-        int valueOS = getIntent().getIntExtra("os0", 0);
-        int valueOS1 = getIntent().getIntExtra("os1", 0);
-        int valueOS2 = getIntent().getIntExtra("os2", 0);
-        int valueOS3 = getIntent().getIntExtra("os3", 0);
-        int valueOS4 = getIntent().getIntExtra("os4", 0);
-        int valueOS5 = getIntent().getIntExtra("os5", 0);
-        int valueOS6 = getIntent().getIntExtra("os6", 0);
-
-        //proces activiteiten filters ophalen
-        int valuePA = getIntent().getIntExtra("pa0", 0);
-        int valuePA1 = getIntent().getIntExtra("pa1", 0);
-        int valuePA2 = getIntent().getIntExtra("pa2", 0);
-        int valuePA3 = getIntent().getIntExtra("pa3", 0);
-        int valuePA4 = getIntent().getIntExtra("pa4", 0);
-        int valuePA5 = getIntent().getIntExtra("pa5", 0);
-        int valuePA6 = getIntent().getIntExtra("pa6", 0);
-        int valuePA7 = getIntent().getIntExtra("pa7", 0);
-        int valuePA8 = getIntent().getIntExtra("pa8", 0);
-        int valuePA9 = getIntent().getIntExtra("pa9", 0);
-
-        //cmm level checkbox ophalen
-        int valueCM1 = getIntent().getIntExtra("cm1", 0);
-        int valueCM2 = getIntent().getIntExtra("cm2", 0);
-        int valueCM3 = getIntent().getIntExtra("cm3", 0);
-        int valueCM4 = getIntent().getIntExtra("cm4", 0);
-        int valueCM5 = getIntent().getIntExtra("cm5", 0);
-
         //extraint/double van de weight.class ophalen
         Intent FilterIntent = getIntent();
         double seekBar = getIntent().getDoubleExtra("s", 0);
@@ -161,58 +131,47 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         int weightBar8 = getIntent().getIntExtra("w8", 0);
         int weightBar9 = getIntent().getIntExtra("w9", 0);
 
-        //gewichten van de filters ophalen
-        int gewichtPT = getIntent().getIntExtra("g", 0);
-        int gewichtOS = getIntent().getIntExtra("g2", 0);
-        int gewichtPA = getIntent().getIntExtra("g3", 0);
-        int gewichtCM = getIntent().getIntExtra("g4", 0);
-
         //initialiseren 10 project typen
-        JSONArray jproject = new JSONArray();
-        jproject.put(value0);
-        jproject.put(value1);
-        jproject.put(value2);
-        jproject.put(value3);
-        jproject.put(value4);
-        jproject.put(value5);
-        jproject.put(value6);
-        jproject.put(value7);
-        jproject.put(value8);
-        jproject.put(value9);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
+        jproject.put(0);
 
         //initialiseren 7 ontwikkel strategieën
-        JSONArray jontwikkel = new JSONArray();
-        jontwikkel.put(valueOS);
-        jontwikkel.put(valueOS1);
-        jontwikkel.put(valueOS2);
-        jontwikkel.put(valueOS3);
-        jontwikkel.put(valueOS4);
-        jontwikkel.put(valueOS5);
-        jontwikkel.put(valueOS6);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
+        jontwikkel.put(0);
 
         //initialiseren 10 proces activiteiten
-        JSONArray jproces = new JSONArray();
-        jproces.put(valuePA);
-        jproces.put(valuePA1);
-        jproces.put(valuePA2);
-        jproces.put(valuePA3);
-        jproces.put(valuePA4);
-        jproces.put(valuePA5);
-        jproces.put(valuePA6);
-        jproces.put(valuePA7);
-        jproces.put(valuePA8);
-        jproces.put(valuePA9);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
+        jproces.put(0);
 
         //initialiseren 5 CMMI/CMM levels
-        JSONArray jcmmi = new JSONArray();
-        jcmmi.put(valueCM1);
-        jcmmi.put(valueCM2);
-        jcmmi.put(valueCM3);
-        jcmmi.put(valueCM4);
-        jcmmi.put(valueCM5);
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
+        jcmmi.put(0);
 
         //initialiseren 9 schalen
-        JSONArray jschalen = new JSONArray();
         try {
             jschalen.put(seekBar / 4);
             jschalen.put(seekBar2 / 4);
@@ -228,7 +187,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         }
 
         //initialiseren schaalgewicht
-        JSONArray jschaalgewicht = new JSONArray();
         jschaalgewicht.put(weightBar);
         jschaalgewicht.put(weightBar2);
         jschaalgewicht.put(weightBar3);
@@ -240,27 +198,23 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         jschaalgewicht.put(weightBar9);
 
         //initialiseren 4 gewichten
-        JSONArray jgewicht = new JSONArray();
-        jgewicht.put(gewichtPT);
-        jgewicht.put(gewichtOS);
-        jgewicht.put(gewichtPA);
-        jgewicht.put(gewichtCM);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
+        jgewicht.put(0);
         jgewicht.put(jschaalgewicht);
 
         //verzenden van de data met json
-        this.jsend.put(jproject);
-        this.jsend.put(jontwikkel);
-        this.jsend.put(jproces);
-        this.jsend.put(jcmmi);
-        this.jsend.put(jschalen);
-        this.jsend.put(jgewicht);
+        this.jsendarray.put(jproject);
+        this.jsendarray.put(jontwikkel);
+        this.jsendarray.put(jproces);
+        this.jsendarray.put(jcmmi);
+        this.jsendarray.put(jschalen);
+        this.jsendarray.put(jgewicht);
 
         //verzenden van data als filters zijn toegepast
-        this.jsendfilter.put(jschalen);
-        this.jsendfilter.put(jschaalgewicht);
-
-        Log.d("Testen verzenden", jsend.toString());
-        Log.d("Testen van met filter", jsendfilter.toString());
+        this.jsendfilterschalen.put(jschalen);
+        this.jsendfilterschaalgewicht.put(jschaalgewicht);
 
         makeJsonArrayRequest();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -272,8 +226,26 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
         showpDialog();
 
+        //kijken waar intent vandaan komt om de goede data door te sturen
+        Intent intent = getIntent();
+        String previousActivity = intent.getStringExtra("FROM_ACTIVITY");
+        //als previous activity van Weight afkomt, stuur de goede jsend string door voor ophalen data
+        if (previousActivity.equals("A")){
+            jsend = jsendarray.toString();
+            Log.d("ACTIVITY A JSEND", jsend);
+        }
+        //als previous activity van Multispinner afkomt, stuur goede jsend string door voor ophalen data
+        if (previousActivity.equals("B")){
+            SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
+            jsend = msharedpref.getString("jsend", DEFAULT);
+            Log.d("ACTIVITY B JSEND", jsend);
+        }
+
+        Log.d("DOORGESTUURD JSONREQ", jsend);
+
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, jsondata,
-                jsend.toString(), new Response.Listener<JSONArray>() {
+                jsend, new Response.Listener<JSONArray>() {
+
 
             @Override
             public void onResponse(JSONArray response) {
@@ -284,6 +256,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                     ArrayList<Entry> yVals1 = new ArrayList<Entry>();
                     final ArrayList<String> xVals = new ArrayList<String>();
 
+                    //laat alleen top 5 zien
                         for(int i = 0; i < 5; i++) {
 
                             JSONObject methods = (JSONObject) response.get(i);
@@ -295,12 +268,8 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             //xvalue van piechart
                             xVals.add(method);
 
-                            Log.d("xVals Conclusion", method);
-
                             //endscore omzetten naar float
                             float testfloat = Float.parseFloat(endscore);
-
-                            Log.d("Endscore Conclusion", endscore);
 
                             //yvalue van piechart
                                 yVals1.add(new Entry(testfloat, i));
@@ -424,31 +393,26 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                 hidepDialog();
             }
         });
-        Log.d("opsturen json", "opsturen");
             //aan queue toevoegen
             JSONadapter.getInstance().addToRequestQueue(req);
     }
 
     @Override
     public void onClick(View v) {
-
     }
 
-    public void filteren(View v){
+    public void filterbutton(View v){
+        //initialiseren sharedpreferences
         SharedPreferences sharedPreferences = getSharedPreferences("filterdata", Context.MODE_PRIVATE);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("filterdata", jsendfilter.toString());
-
+        //strings opslaan in shared preferences voor schalen en schaalgewicht
+        editor.putString("filterdataschalen", jsendfilterschalen.toString());
+        editor.putString("filterdataschaalgewicht", jsendfilterschaalgewicht.toString());
         editor.apply();
 
-        Toast.makeText(this, "Opslaan slidersdata test", Toast.LENGTH_LONG).show();
-
-        Log.d("Testen van sharedpref", jsend.toString());
-
+        //intent initialiseren en starten
         Intent i = new Intent(Conclusion.this, Multispinner.class);
-
         startActivity(i);
     }
 

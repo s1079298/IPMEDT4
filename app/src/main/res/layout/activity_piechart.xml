@@ -13,7 +13,7 @@
 
     <Button
         android:id="@+id/btn_filter"
-        android:onClick="filteren"
+        android:onClick="filterbutton"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:background="#4CAF50"

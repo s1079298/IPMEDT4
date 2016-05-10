@@ -160,12 +160,9 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 				//laat zien welke projecttypen in filter zijn aangeklikt
 				if(isChecked){
 					selectedProjectTypen.add(projecttypen[which]);
-					Log.d("Selected Project Typen", String.valueOf(selectedProjectTypen));
 				} else {
 					selectedProjectTypen.remove(projecttypen[which]);
 				}
-				Log.d("Test", String.valueOf(which));
-
                 onChangeSelectedProjectTypen();
 			}
 		};
@@ -363,63 +360,83 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		//initialiseren intent
 		Intent i = new Intent(Multispinner.this, Conclusion.class);
 
+        //sharedpref ophalen vanaf conclusion klasse
         SharedPreferences sharedPreferences = getSharedPreferences("filterdata", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("filterdata", DEFAULT);
+        String schalen = sharedPreferences.getString("filterdataschalen", DEFAULT);
+        String schaalgewicht = sharedPreferences.getString("filterdataschaalgewicht", DEFAULT);
 
-        Log.d("Data Multispinner", name);
+        //verwijderen van extra square brackets in string voor doorsturen nieuwe string
+        String regex = "\\[|\\]";
+        schalen = schalen.replaceAll(regex, "");
+        schaalgewicht = schaalgewicht.replaceAll(regex, "");
 
-        if(name.equals(DEFAULT)){
+        //toast voor als er geen data gevonden is
+        if(schalen.equals(DEFAULT) || schaalgewicht.equals(DEFAULT)){
             Toast.makeText(this, "No data was found", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_LONG).show();
         }
 
-		//verstuur data van de project typen checkboxes
-		i.putExtra("value0", value0);
-		i.putExtra("value1", value1);
-		i.putExtra("value2", value2);
-		i.putExtra("value3", value3);
-		i.putExtra("value4", value4);
-		i.putExtra("value5", value5);
-		i.putExtra("value6", value6);
-		i.putExtra("value7", value7);
-		i.putExtra("value8", value8);
-		i.putExtra("value9", value9);
+        //doorsutren van goede string
+		String jsend =
+                //String voor projecttypen
+                "[[" + String.valueOf(value0) + "," +
+                String.valueOf(value1)+ "," +
+                String.valueOf(value2)+ "," +
+                String.valueOf(value3)+ "," +
+                String.valueOf(value4)+ "," +
+                String.valueOf(value5)+ "," +
+                String.valueOf(value6)+ "," +
+                String.valueOf(value7)+ "," +
+                String.valueOf(value8)+ "," +
+                String.valueOf(value9)+"]" + "," +
+                //stringarray voor ontwikkel strategieen
+                "[" +
+                String.valueOf(valueOS) + "," +
+                String.valueOf(valueOS1) + "," +
+                String.valueOf(valueOS2) + "," +
+                String.valueOf(valueOS3) + "," +
+                String.valueOf(valueOS4) + "," +
+                String.valueOf(valueOS5) + "," +
+                String.valueOf(valueOS6) + "]" + "," +
 
-		//verstuur data van ontwikkel strategie checkboxes
-		i.putExtra("os0", valueOS);
-		i.putExtra("os1", valueOS1);
-		i.putExtra("os2", valueOS2);
-		i.putExtra("os3", valueOS3);
-		i.putExtra("os4", valueOS4);
-		i.putExtra("os5", valueOS5);
-		i.putExtra("os6", valueOS6);
+                //stringarray voor proces activiteiten
+                "[" + String.valueOf(valuePA) + "," +
+                String.valueOf(valuePA1)+ "," +
+                String.valueOf(valuePA2)+ "," +
+                String.valueOf(valuePA3)+ "," +
+                String.valueOf(valuePA4)+ "," +
+                String.valueOf(valuePA5)+ "," +
+                String.valueOf(valuePA6)+ "," +
+                String.valueOf(valuePA7)+ "," +
+                String.valueOf(valuePA8)+ "," +
+                String.valueOf(valuePA9)+"]" + "," +
 
-		//verstuur data van de proces activiteiten checkboxes
-		i.putExtra("pa0", valuePA);
-		i.putExtra("pa1", valuePA1);
-		i.putExtra("pa2", valuePA2);
-		i.putExtra("pa3", valuePA3);
-		i.putExtra("pa4", valuePA4);
-		i.putExtra("pa5", valuePA5);
-		i.putExtra("pa6", valuePA6);
-		i.putExtra("pa7", valuePA7);
-		i.putExtra("pa8", valuePA8);
-		i.putExtra("pa9", valuePA9);
+                //stringarray voor cmmi level
+                "[" + String.valueOf(valueCM1) + "," +
+                String.valueOf(valueCM2)+ "," +
+                String.valueOf(valueCM3)+ "," +
+                String.valueOf(valueCM4)+ "," +
+                String.valueOf(valueCM5)+ "]" + "," +
+                //schalen toevoegen
+                "[" + schalen + "]" + "," +
 
-		//verstuur data van de CMM level checkboxes
-		i.putExtra("cm1", valueCM1);
-		i.putExtra("cm2", valueCM2);
-		i.putExtra("cm3", valueCM3);
-		i.putExtra("cm4", valueCM4);
-		i.putExtra("cm5", valueCM5);
+                //gewicht toevoegen en daarin schaalgewicht
+                "[" + gewichtPT.getProgress() + "," +
+                gewichtOS.getProgress() + "," +
+                gewichtPA.getProgress() + "," +
+                gewichtCM.getProgress() + "," +
+                "[" + schaalgewicht + "]]]";
 
-		//verstuur data van de gewichten
-		i.putExtra("g", gewichtPT.getProgress());
-		i.putExtra("g2", gewichtOS.getProgress());
-		i.putExtra("g3", gewichtPA.getProgress());
-		i.putExtra("g4", gewichtCM.getProgress());
+        i.putExtra("FROM_ACTIVITY", "B");
+
+        SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = msharedpref.edit();
+        edit.putString("jsend", jsend);
+        edit.apply();
+
+        Log.d("Dit is de string", jsend);
 
 		//start intent
 		startActivity(i);
