@@ -19,7 +19,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class MainActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
-
+        //test upload nieuwe branch Joost
+        //oude branch gaf errors. verwijderd nieuwe aangemaakt
         Button button;
         Button button1;
 
