@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View.OnClickListener;
@@ -20,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
-
 
 public class MainActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
@@ -34,13 +31,13 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            // Get the view from activity_main.xml
+            // activity_main.xml inladen
             setContentView(R.layout.activity_main);
 
-            // Locate the button in activity_main.xml
+            // activity_main.xml button genaamd button1 zoeken
             button1 = (Button) findViewById(R.id.btn_laatste);
 
-            // Capture button clicks
+            // button1 functionaliteit
             button1.setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
 
@@ -66,10 +63,10 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            // Locate the button in activity_main.xml
+            // activity_main.xml button genaamd button zoeke
             button = (Button) findViewById(R.id.btn_nieuw);
 
-            // Capture button clicks
+            // button functionaliteit
             button.setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
 
@@ -81,11 +78,12 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_main, menu);
-            return true;
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
 
     @Override
     public void onClick(View v) {
