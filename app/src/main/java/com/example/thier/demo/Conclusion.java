@@ -6,21 +6,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendPosition;
@@ -31,15 +27,11 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
-
 import android.view.View.OnClickListener;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Wendy on 25-3-2016.
@@ -47,11 +39,8 @@ import java.util.Arrays;
 public class Conclusion extends AppCompatActivity implements OnClickListener {
     //url van json advise
     private String jsondata = "http://www.nieuwemaker.nl/madvise/index.php?view=JSON&action=advise";
+    //requestqueue voor volley
     RequestQueue requestQueue;
-
-    final String DEFAULT = "N/A";
-
-    private static String TAG = Conclusion.class.getSimpleName();
 
     //Progress Dialog
     private ProgressDialog pDialog;
@@ -59,11 +48,14 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     //array voor lijst en items
     private static final String TAG_METHOD = "method";
     private static final String TAG_ENDSCORE = "endscore";
+    private static String TAG = Conclusion.class.getSimpleName();
+    final String DEFAULT = "N/A";
 
     //JSonarray voor het verzenden van de data
     JSONArray jsendarray = new JSONArray();
     JSONArray jsendfilterschalen = new JSONArray();
     JSONArray jsendfilterschaalgewicht = new JSONArray();
+    //jsend string voor uiteindelijke doorsturen van de data
     String jsend;
 
     JSONArray jproject = new JSONArray();
@@ -74,6 +66,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
     JSONArray jschaalgewicht = new JSONArray();
     JSONArray jgewicht = new JSONArray();
 
+    //Chart
     private RelativeLayout mainLayout;
     private PieChart mChart;
 
@@ -264,6 +257,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         ed.putString("jsondata", jsend);
         ed.apply();
 
+        //jsonarrayrequest voor ophalen en doorsturen van de data
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, jsondata,
                 jsend, new Response.Listener<JSONArray>() {
 
@@ -302,7 +296,6 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
 
                             // kleuren adden aan pie chart
                             ArrayList<Integer> colors = new ArrayList<Integer>();
-
                             for (int c : ColorTemplate.VORDIPLOM_COLORS)
                                 colors.add(c);
 
@@ -321,7 +314,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             colors.add(ColorTemplate.getHoloBlue());
                             dataSet.setColors(colors);
 
-                            // instantiate pie data object now
+                            // instantiate pie data object
                             PieData data = new PieData(xVals, dataSet);
 
                             //laat percentage zien
@@ -368,26 +361,22 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                             }
                             if(e.getXIndex() == 1){
                                 editormShared.putString("jsondata", naamString2);
-                                //editormShared.apply();
                             }
                             if(e.getXIndex() == 2){
                                 editormShared.putString("jsondata", naamString3);
-                                //editormShared.apply();
                             }
                             if(e.getXIndex() == 3){
                                 editormShared.putString("jsondata", naamString4);
-                                //editormShared.apply();
                             }
                             if(e.getXIndex() == 4){
                                 editormShared.putString("jsondata", naamString5);
-                                //editormShared.apply();
                             }
                             editormShared.apply();
                             startActivity(x);
                         }
                         @Override
                         public void onNothingSelected() {
-
+                            //do nothing
                         }
                     });
 
@@ -397,6 +386,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
                 Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
             hidepDialog();
+       //error handlen van volley
         }
     }, new Response.ErrorListener() {
             @Override
@@ -411,6 +401,7 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
             JSONadapter.getInstance().addToRequestQueue(req);
     }
 
+    //standaard onclick methode
     @Override
     public void onClick(View v) {
     }
@@ -430,12 +421,13 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         startActivity(i);
     }
 
-private void showpDialog() {
+    //show en hide dialog methodes
+    private void showpDialog() {
         if (!pDialog.isShowing())
         pDialog.show();
         }
 
-private void hidepDialog() {
+    private void hidepDialog() {
         if (pDialog.isShowing())
         pDialog.dismiss();
         }

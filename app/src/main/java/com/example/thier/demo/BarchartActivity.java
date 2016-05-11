@@ -1,64 +1,42 @@
 package com.example.thier.demo;
 
 import android.app.ProgressDialog;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.HorizontalBarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.Highlight;
-import com.github.mikephil.charting.utils.PercentFormatter;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class BarchartActivity extends AppCompatActivity {
-
-    public static final String DEFAULT = "N/A";
+    //requestqueue voor volley initialiseren
     RequestQueue requestQueue;
-    private static String TAG = BarchartActivity.class.getSimpleName();
-    String jsondataURL;
 
+    //strings initialiseren
+    private static String TAG = BarchartActivity.class.getSimpleName();
+    public static final String DEFAULT = "N/A";
     private static final String TAG_DESCRIPTION = "description";
     private static final String TAG_PT = "projectType";
     private static final String TAG_STRATEGY = "strategy";
     private static final String TAG_ACTIVITY = "activity";
     private static final String TAG_CMM = "cmmLevel";
-    private static final String TAG_SLIDERS = "sliders";
+    String jsondataURL;
 
     //Progress Dialog
     private ProgressDialog pDialog;
@@ -88,7 +66,7 @@ public class BarchartActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
-    //json object request voor inladen data
+    //json object methode voor inladen data
     private void makeJsonObjectRequest() {
 
         showpDialog();
@@ -105,8 +83,10 @@ public class BarchartActivity extends AppCompatActivity {
         } else {
             jsondataURL = "http://nieuwemaker.nl/madvise/index.php?action=method&data=" + jsondata;
         }
+        //Log voor testen goede doorstuur URL
         Log.d("Testen jsonObject", jsondataURL);
 
+        //json object request voor ophalen informatie die verwerkt worden in de barcharts
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET,
                 jsondataURL, new Response.Listener<JSONObject>() {
 
@@ -128,7 +108,6 @@ public class BarchartActivity extends AppCompatActivity {
                     JSONArray strategy = response.getJSONArray(TAG_STRATEGY);
                     JSONArray activity = response.getJSONArray(TAG_ACTIVITY);
                     JSONArray cmmLevel = response.getJSONArray(TAG_CMM);
-                    JSONArray sliders = response.getJSONArray(TAG_SLIDERS);
 
                     //aanmaken van de project types barchart
                     BarChart barChartPT = (BarChart) findViewById(R.id.chartProjectType);
@@ -168,8 +147,10 @@ public class BarchartActivity extends AppCompatActivity {
                     entriesPT.add(new BarEntry(PT8, 8));
                     entriesPT.add(new BarEntry(PT9, 9));
 
-                    BarDataSet datasetTP = new BarDataSet(entriesPT, "Methode richt zich op deze project typen");
+                    //dataset voor project typen barchart
+                    BarDataSet datasetPT = new BarDataSet(entriesPT, "Methode richt zich op deze project typen");
 
+                    //labels adden voor project typen
                     ArrayList<String> labelsPT = new ArrayList<String>();
                     labelsPT.add("Commercieel");
                     labelsPT.add("Data Warehouse");
@@ -182,9 +163,10 @@ public class BarchartActivity extends AppCompatActivity {
                     labelsPT.add("Uitfasering");
                     labelsPT.add("Bedrijfs-kritisch");
 
-                    BarData dataTP = new BarData(labelsPT, datasetTP);
-                    datasetTP.setColors(ColorTemplate.JOYFUL_COLORS);
-                    barChartPT.setData(dataTP);
+                    //setdata van project types
+                    BarData dataPT = new BarData(labelsPT, datasetPT);
+                    datasetPT.setColors(ColorTemplate.JOYFUL_COLORS);
+                    barChartPT.setData(dataPT);
                     barChartPT.animateY(5000);
 
                     //barchart ontwikkelstrategie
@@ -216,8 +198,10 @@ public class BarchartActivity extends AppCompatActivity {
                     entriesOS.add(new BarEntry(OS5, 5));
                     entriesOS.add(new BarEntry(OS6, 6));
 
+                    //dataset voor ontwikkelstrategieen
                     BarDataSet datasetOS = new BarDataSet(entriesOS, "Methode richt zich op deze strategieën");
 
+                    //add labels voor ontwikkel strategieen
                     ArrayList<String> labelsOS = new ArrayList<String>();
                     labelsOS.add("Code and Fix");
                     labelsOS.add("Waterval");
@@ -227,6 +211,7 @@ public class BarchartActivity extends AppCompatActivity {
                     labelsOS.add("Prototyping");
                     labelsOS.add("Rapid App Design");
 
+                    //setdata voor ontwikkel strategieen, en animatie
                     BarData dataOS = new BarData(labelsOS, datasetOS);
                     datasetOS.setColors(ColorTemplate.JOYFUL_COLORS);
                     barChartOS.setData(dataOS);
@@ -270,6 +255,7 @@ public class BarchartActivity extends AppCompatActivity {
                     entriesPA.add(new BarEntry(PA8, 8));
                     entriesPA.add(new BarEntry(PA9, 9));
 
+                    //dataset voor proces activiteiten barchart
                     BarDataSet datasetPA = new BarDataSet(entriesPA, "Methode richt zich op deze activiteiten");
 
                     //labels toevoegen voor proces activiteiten barchart
@@ -285,12 +271,13 @@ public class BarchartActivity extends AppCompatActivity {
                     labelsPA.add("Training");
                     labelsPA.add("Implementatie");
 
+                    //setdata voor procesactiviteiten, en animatie
                     BarData dataPA = new BarData(labelsPA, datasetPA);
                     datasetPA.setColors(ColorTemplate.JOYFUL_COLORS);
                     barChartPA.setData(dataPA);
                     barChartPA.animateY(5000);
 
-                    /// chart CMM / CMMI
+                    //chart CMM / CMMI
                     BarChart barChartCM = (BarChart) findViewById(R.id.chartcmmLevel);
 
                     //double naar int voor cmmi levels barchart
@@ -313,6 +300,7 @@ public class BarchartActivity extends AppCompatActivity {
                     entriesCM.add(new BarEntry(CM3, 3));
                     entriesCM.add(new BarEntry(CM4, 4));
 
+                    //dataset voor CMMI
                     BarDataSet datasetCM = new BarDataSet(entriesCM, "Methode wordt veel gebruikt met deze CMMI levels");
 
                     //add labels voor cmmi in barchart
@@ -329,13 +317,14 @@ public class BarchartActivity extends AppCompatActivity {
                     barChartCM.setData(dataCM);
                     barChartCM.animateY(5000);
 
+                    //jsonexception afhandelen
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    Log.d("Error: ", e.getMessage());
                 }
                 hidepDialog();
+
+                //error afhandeling
             }
         }, new Response.ErrorListener() {
 
@@ -352,6 +341,7 @@ public class BarchartActivity extends AppCompatActivity {
         JSONadapter.getInstance().addToRequestQueue(req);
     }
 
+    //show en hide dialog methodes
     private void showpDialog() {
         if (!pDialog.isShowing())
             pDialog.show();

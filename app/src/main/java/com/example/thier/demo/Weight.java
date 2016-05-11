@@ -71,11 +71,13 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
 
     }
 
+    //value voor de seekbars
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         value = progress;
     }
 
+    //autogegenereerde methodes voor seekbars
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         // TODO Auto-generated  method stub
@@ -87,9 +89,10 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
     }
 
     public void conclusion(View view){
+        //initialiseren intent
         Intent FilterIntent = new Intent(Weight.this, Conclusion.class);
-        //doorsturen van data weightbars en seekbars naar de conclusion.class
 
+        //doorsturen van data weightbars en seekbars naar de conclusion.class
         FilterIntent.putExtra("w", weightBar.getProgress());
         FilterIntent.putExtra("w2", weightBar2.getProgress());
         FilterIntent.putExtra("w3", weightBar3.getProgress());

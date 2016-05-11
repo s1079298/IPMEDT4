@@ -1,38 +1,39 @@
 package com.example.thier.demo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements OnSeekBarChangeListener, OnClickListener {
+        implements OnClickListener {
 
-    Button button;
-    Button button1;
+    //initialiseren van buttons en strings
+    Button button, button1;
     private static final String DEFAULT = "N/A";
-
     String jsend;
 
+    //onCreate methode
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             // activity_main.xml inladen
             setContentView(R.layout.activity_main);
+
+            //als er geen netwerk available is, toon toast tekst
+            if(!isNetworkAvailable()){
+                Toast.makeText(MainActivity.this, "Geen netwerk beschikbaar", Toast.LENGTH_LONG).show();
+            } else {
+                //nothing
+            }
 
             // activity_main.xml button genaamd button1 zoeken
             button1 = (Button) findViewById(R.id.btn_laatste);
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity
                     editMain.putString("jsondata", jsend);
                     editMain.apply();
 
+                    //start Conclusion klasse
                     startActivity(myIntent);
                 }
             });
@@ -69,39 +71,26 @@ public class MainActivity extends AppCompatActivity
             // button functionaliteit
             button.setOnClickListener(new OnClickListener() {
                 public void onClick(View arg0) {
-
-                    // Start SlidersActivity.class
                     Intent myIntent = new Intent(MainActivity.this,
                             SlidersActivity.class);
+
+                    //Start Slideractivity klasse
                     startActivity(myIntent);
                 }
             });
         }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    //methode om netwerk availability te checken
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-
+    //standaard onClick methode
     @Override
     public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
 }

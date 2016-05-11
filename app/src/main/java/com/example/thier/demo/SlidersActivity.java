@@ -1,54 +1,28 @@
 package com.example.thier.demo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View.OnClickListener;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Toast;
-import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-
 
 public class SlidersActivity extends AppCompatActivity
         implements OnSeekBarChangeListener, OnClickListener {
 
-
+    //value voor de seekBars
     float value;
     //seekbars
-    SeekBar seekBar;
-    SeekBar seekBar2;
-    SeekBar seekBar3;
-    SeekBar seekBar4;
-    SeekBar seekBar5;
-    SeekBar seekBar6;
-    SeekBar seekBar7;
-    SeekBar seekBar8;
-    SeekBar seekBar9;
+    SeekBar seekBar, seekBar2, seekBar3, seekBar4, seekBar5, seekBar6, seekBar7, seekBar8, seekBar9;
 
     //info buttons
-    ImageButton info1;
-    ImageButton info2;
-    ImageButton info3;
-    ImageButton info4;
-    ImageButton info5;
-    ImageButton info6;
-    ImageButton info7;
-    ImageButton info8;
-    ImageButton info9;
-
+    ImageButton info1, info2, info3, info4, info5, info6, info7, info8, info9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,17 +57,17 @@ public class SlidersActivity extends AppCompatActivity
         seekBar9 = (SeekBar) findViewById(R.id.seekBar9);
         seekBar9.setOnSeekBarChangeListener(this);
 
+        //init voor de informatie imagebuttons
         init();
-
-
-
     }
 
+    //value berekenen van de seekBars, deze moeten door 4 gedeeld worden aangezien de
+    // uiteindelijke values tot max 1 komen (0.00, 0.25, 0.50, 0.75, 1.00)
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         value = ((float)progress / 4 );
     }
-
+    //autogegenereerde methodes
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         // TODO Auto-generated  method stub
@@ -132,10 +106,9 @@ public class SlidersActivity extends AppCompatActivity
 
         info9 = (ImageButton) findViewById(R.id.info9);
         info9.setOnClickListener(this);
-
     }
 
-    //if statements instellen voor de info buttons, zodat de goede info weergegeven wordt
+    //if statements instellen voor de negen info buttons, zodat de goede info weergegeven wordt
     public void onClick(View v){
         if (v.getId() == R.id.info1){
             new AlertDialog.Builder(this)
@@ -252,12 +225,11 @@ public class SlidersActivity extends AppCompatActivity
                     })
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .show();
-        } else {
-            // niets
         }
     }
 
     public void gewicht(View view){
+        //intent initialiseren
         Intent intent = new Intent(SlidersActivity.this, Weight.class);
 
         //doorsturen data van de seekbars naar weight.class
@@ -271,23 +243,7 @@ public class SlidersActivity extends AppCompatActivity
         intent.putExtra("s8", ((double)seekBar8.getProgress()));
         intent.putExtra("s9", ((double)seekBar9.getProgress()));
 
+        //start Weight klasse
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        return super.onOptionsItemSelected(item);
     }
 }

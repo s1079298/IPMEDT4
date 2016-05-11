@@ -3,9 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="keuze">Maak een keuze</string>
-
-    <string name="titel">Wat vindt je belangrijker?</string>
-    <string name="lorum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="titel">Wat vindt je belangrijker?</string>\
     <string name="people">Mensen</string>
     <string name="process">Processen</string>
     <string name="software">Software</string>
@@ -24,8 +22,10 @@
     <string name="management">Management</string>
     <string name="prescriptive">Voorschrijvend</string>
     <string name="adhoc">Ad Hoc</string>
+
     <string name="plus">++</string>
     <string name="min">--</string>
+
     <string name="next">Volgende</string>
     <string name="result">Toon Resultaat</string>
     <string name="resultTitel">Resultaten</string>
@@ -42,7 +42,6 @@
     <string name="weight9">Voorschrijvend/Ad Hoc</string>
 
     <string name="filterstring">Filteren</string>
-
     <string name="spinnerPT">Selecteer Project Typen</string>
     <string name="geenPT"> - Geen Project Typen geselecteerd -</string>
     <string name="weightPT">Gewicht Project Typen</string>
@@ -68,7 +67,4 @@
     <string name="BarchartOntwikkelstrategie">Ontwikkel strategie</string>
     <string name="BarchartProcesActiviteiten">Proces Activiteiten</string>
     <string name="BarchartCMM">CMMI / CMM</string>
-
-
-
 </resources>

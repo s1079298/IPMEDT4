@@ -116,6 +116,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		}
 	}
 
+    //laat vinkjes zien of het aan- of uitgevinkt is bij project type filter
 	protected void onChangeSelectedProjectTypen() {
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -125,6 +126,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
         selectProjectTypenButton.setText(stringBuilder.toString());
 	}
 
+    //laat in de multispinner zien welke project typen filters zijn aangeklikt
 	protected void showSelectProjectTypenDialog() {
 		final boolean[] checkedProjectTypen = new boolean[projecttypen.length];
 		int count = projecttypen.length;
@@ -175,6 +177,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		dialog.show();
 	}
 
+    //laat vinkjes zien of het aan- of uitgevinkt is bij ontwikkel strategie filter
 	protected void onChangeSelectedOntwikkelStrategie() {
 		StringBuilder stringBuilderOS = new StringBuilder();
 
@@ -185,6 +188,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 
 	}
 
+    //laat in de multispinner zien welke ontwikkel strategie filters zijn aangeklikt
 	protected void showSelectOntwikkelStrategieDialog() {
 		boolean[] checkedOntwikkelStrategie = new boolean[ontwikkelstrategie.length];
 		int count = ontwikkelstrategie.length;
@@ -231,6 +235,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		dialogOS.show();
 	}
 
+    //laat vinkjes zien of het aan- of uitgevinkt is bij proces activiteiten filter
 	protected void onChangeSelectedProcesActiviteiten() {
 		StringBuilder stringBuilderPA = new StringBuilder();
 
@@ -240,6 +245,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		selectProcesActiviteitenButton.setText(stringBuilderPA.toString());
 	}
 
+    //laat in de multispinner zien welke procesactiviteiten filters zijn aangeklikt
 	protected void showSelectProcesActiviteitenDialog() {
 		boolean[] checkedProcesActiviteiten = new boolean[procesactiviteiten.length];
 		int count = procesactiviteiten.length;
@@ -290,6 +296,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		dialogPA.show();
 	}
 
+    //laat vinkjes zien of het aan- of uitgevinkt is bij CMMI filter
 	protected void onChangeSelectedCMM() {
 		StringBuilder stringBuilderCM = new StringBuilder();
 
@@ -299,6 +306,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		selectCMMButton.setText(stringBuilderCM.toString());
 	}
 
+    //laat in de multispinner zien welke CMMI filters zijn aangeklikt
 	protected void showSelectCMMDialog() {
 		boolean[] checkedCMM = new boolean[cmm.length];
 		int count = cmm.length;
@@ -375,10 +383,11 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
             Toast.makeText(this, "No data was found", Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_LONG).show();
+            //do nothing
+            //Toast.makeText(this, "Data loaded successfully", Toast.LENGTH_LONG).show();
         }
 
-        //doorsutren van goede string
+        //doorsturen van goede string
 		String jsend =
                 //String voor projecttypen
                 "[[" + String.valueOf(value0) + "," +
@@ -432,12 +441,13 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
 		//Intent putExtra zodat de Conclusion kan zien vanuit welke activity zijn klasse wordt aangeroepen
         i.putExtra("FROM_ACTIVITY", "B");
 
+        //sharedpreferences nieuwe jsend string voor de goede jsend in conclusion
         SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = msharedpref.edit();
         edit.putString("jsend", jsend);
         edit.apply();
 
-		//start intent
+		//start Conclusion klasse
 		startActivity(i);
 	}
 }
