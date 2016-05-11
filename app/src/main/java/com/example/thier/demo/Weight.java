@@ -16,28 +16,11 @@ import android.widget.Toast;
  */
 public class Weight extends AppCompatActivity implements OnSeekBarChangeListener {
 
-    SeekBar weightBar;
-    SeekBar weightBar2;
-    SeekBar weightBar3;
-    SeekBar weightBar4;
-    SeekBar weightBar5;
-    SeekBar weightBar6;
-    SeekBar weightBar7;
-    SeekBar weightBar8;
-    SeekBar weightBar9;
-
-    double seekBar;
-    double seekBar2;
-    double seekBar3;
-    double seekBar4;
-    double seekBar5;
-    double seekBar6;
-    double seekBar7;
-    double seekBar8;
-    double seekBar9;
-
-
-
+    //Seekbars initialiseren
+    SeekBar weightBar, weightBar2, weightBar3, weightBar4, weightBar5, weightBar6, weightBar7, weightBar8, weightBar9;
+    //doubles initialiseren van de intent extra's
+    double seekBar, seekBar2, seekBar3, seekBar4, seekBar5, seekBar6, seekBar7, seekBar8, seekBar9;
+    //int value voor de weightbars
     int value;
 
     @Override
@@ -86,9 +69,6 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         weightBar9 = (SeekBar) findViewById(R.id.weightBar9);
         weightBar9.setOnSeekBarChangeListener(this);
 
-
-
-
     }
 
     @Override
@@ -130,8 +110,10 @@ public class Weight extends AppCompatActivity implements OnSeekBarChangeListener
         FilterIntent.putExtra("s8", seekBar8);
         FilterIntent.putExtra("s9", seekBar9);
 
+        //Intent putExtra zodat de Conclusion kan zien vanuit welke activity zijn klasse wordt aangeroepen
         FilterIntent.putExtra("FROM_ACTIVITY", "A");
 
+        //starten van Conclusion
         startActivity(FilterIntent);
     }
 }

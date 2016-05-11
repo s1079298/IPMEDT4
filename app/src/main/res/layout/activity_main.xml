@@ -4,21 +4,26 @@
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nieuw advies"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/btn_nieuw"
         android:background="#4CAF50"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:alpha="0.87"
-        android:layout_marginTop="76dp"
         android:layout_below="@+id/Keuze"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Laatste advies"
         android:id="@+id/btn_laatste"
@@ -27,8 +32,13 @@
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:alpha="0.87"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btn_nieuw"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,9 +50,9 @@
         android:text="@string/keuze"
         android:id="@+id/Keuze"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="32dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:layout_centerHorizontal="true" />
-        />
 
 </RelativeLayout>

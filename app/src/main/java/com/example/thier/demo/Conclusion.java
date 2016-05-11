@@ -229,15 +229,18 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
         //kijken waar intent vandaan komt om de goede data door te sturen
         Intent intent = getIntent();
         String previousActivity = intent.getStringExtra("FROM_ACTIVITY");
+
         //als previous activity van Weight afkomt, stuur de goede jsend string door voor ophalen data
         if(previousActivity.equals("A")){
             jsend = jsendarray.toString();
             SharedPreferences sharedprefA = getSharedPreferences("jsondataA", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedprefA.edit();
             edit.putString("jsendA", jsend);
+            edit.apply();
 
             Log.d("ACTIVITY A JSEND", jsend);
         }
+
         //als previous activity van Multispinner afkomt, stuur goede jsend string door voor ophalen data
         if(previousActivity.equals("B")){
             SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
@@ -245,20 +248,21 @@ public class Conclusion extends AppCompatActivity implements OnClickListener {
             Log.d("ACTIVITY B JSEND", jsend);
         }
 
-        // TO_DO, werkt alleen met de laatste filters
         //als previous activity van MainActivity afkomt, zorg voor de goede data van sharedpref
         if(previousActivity.equals("D")){
-            if(previousActivity.equals("A")){
-                SharedPreferences sharedprefA = getSharedPreferences("jsondataA", Context.MODE_PRIVATE);
-                jsend = sharedprefA.getString("jsendA", DEFAULT);
-            } else {
-                SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
-                jsend = msharedpref.getString("jsend", DEFAULT);
-            }
+            SharedPreferences sharedMain = getSharedPreferences("jsonMain", Context.MODE_PRIVATE);
+            jsend = sharedMain.getString("jsondata", DEFAULT);
+
             Log.d("ACTIVITY C JSEND", jsend);
         }
 
         Log.d("DOORGESTUURD JSONREQ", jsend);
+
+        //Sharedpref voor de MainActivity, zodat deze de goede jsend string kan ophalen en doorsturen
+        SharedPreferences jsondataConclusion = getSharedPreferences("jsondataConclusion", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = jsondataConclusion.edit();
+        ed.putString("jsondata", jsend);
+        ed.apply();
 
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, jsondata,
                 jsend, new Response.Listener<JSONArray>() {

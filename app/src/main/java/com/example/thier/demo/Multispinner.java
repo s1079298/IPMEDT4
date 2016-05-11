@@ -429,6 +429,7 @@ public class Multispinner extends Activity implements OnSeekBarChangeListener, O
                 gewichtCM.getProgress() + "," +
                 "[" + schaalgewicht + "]]]";
 
+		//Intent putExtra zodat de Conclusion kan zien vanuit welke activity zijn klasse wordt aangeroepen
         i.putExtra("FROM_ACTIVITY", "B");
 
         SharedPreferences msharedpref = getSharedPreferences("jsondata", Context.MODE_PRIVATE);
